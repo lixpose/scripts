@@ -3,7 +3,9 @@
 
 set +e
 
-me=$(basename "${BASH_SOURCE[0]}")
+me="prep/redhat"
+echo ''
+echo === Setup $me ===
 
 lxc-setup lib/common
 

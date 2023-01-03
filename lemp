@@ -3,7 +3,7 @@
 
 set +e
 
-me=$(basename "${BASH_SOURCE[0]}")
+me="lemp"
 echo ''
 echo === Setup $me ===
 phpversion=$1

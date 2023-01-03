@@ -3,7 +3,9 @@
 
 set +e
 
-me=$(basename "${BASH_SOURCE[0]}")
+me="prep/debian"
+echo ''
+echo === Setup $me ===
 
 # lxc-setup lib/common
 

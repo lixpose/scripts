@@ -3,7 +3,7 @@
 
 set +e
 
-me=$(basename "${BASH_SOURCE[0]}")
+me="mbx-toolbox"
 echo ''
 echo === Setup $me ===
 branch=${1=-master}

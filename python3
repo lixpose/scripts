@@ -3,7 +3,7 @@
 
 set +e
 
-me=$(basename "${BASH_SOURCE[0]}")
+me="python3"
 echo ''
 echo === Setup $me ===
 
