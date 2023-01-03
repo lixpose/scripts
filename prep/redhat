@@ -18,7 +18,7 @@ else
 	return 1
 fi
 
-$DCODE="rh"
+export DCODE="rh"
 
 set -e
 
