@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# Usage: lxc-setup lemp <phpversion: {N.N}>
+
+set +e
+
+me=$(basename "${BASH_SOURCE[0]}")
+echo ''
+echo === Setup $me ===
+
+lxc-setup lib/common
+
+if ! test-command composer; then
+	if ! test-command php; then
+		>&2 echo "$me: Composer requires PHP. Aborting."
+		return 1
+	fi
+	tmp=$(mktemp)
+	expected_checksum=$(php -r "copy('https://composer.github.io/installer.sig', 'php://stdout');")
+	php -r "copy('https://getcomposer.org/installer', '$tmp');"
+	actual_checksum="$(php -r "echo hash_file('sha384', '$tmp');")"
+	if [ "$expected_checksum" != "$actual_checksum" ]
+	then
+		>&2 echo 'ERROR: Invalid installer checksum'
+		rm $tmp
+		exit 1
+	fi
+	php $tmp
+	mv -f $HOME/composer.phar /usr/local/bin/composer
+	rm $tmp
+fi
+
+set -e
+

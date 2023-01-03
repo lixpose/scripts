@@ -4,6 +4,8 @@
 set +e
 
 me=$(basename "${BASH_SOURCE[0]}")
+echo ''
+echo === Setup $me ===
 
 lxc-setup lib/common
 

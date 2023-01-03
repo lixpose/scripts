@@ -4,9 +4,11 @@
 set +e
 
 me=$(basename "${BASH_SOURCE[0]}")
+echo ''
+echo === Setup $me ===
 phpversion=$1
 
-[ -n "$phpversion" ] || { echo "$me: Parameter 1 is missing: phpversion"; exit 1; } 
+[ -n "$phpversion" ] || { >&2 echo "$me: Parameter 1 is missing: phpversion"; exit 1; } 
 
 lxc-setup lib/common
 
@@ -29,11 +31,19 @@ if ! test-command php; then
 	fi
 	ensure-installed \
 		php$phpversion \
+		php$phpversion-common \
+		php$phpversion-cli \
 		php$phpversion-curl \
-		php$phpversion-mbstring \
 		php$phpversion-gd \
+		php$phpversion-gmp \
+		php$phpversion-imap \
 		php$phpversion-intl \
+		php$phpversion-mbstring \
+		php$phpversion-mysql \
+		php$phpversion-soap \
 		php$phpversion-sqlite3 \
+		php$phpversion-xml \
+		php$phpversion-xmlrpc \
 		php$phpversion-zip \
 		php$phpversion-fpm
 			systemctl start php$phpversion-fpm

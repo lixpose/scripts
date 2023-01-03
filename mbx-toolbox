@@ -4,6 +4,8 @@
 set +e
 
 me=$(basename "${BASH_SOURCE[0]}")
+echo ''
+echo === Setup $me ===
 branch=${1=-master}
 
 lxc-setup lib/common

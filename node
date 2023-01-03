@@ -4,9 +4,11 @@
 set +e
 
 me=$(basename "${BASH_SOURCE[0]}")
+echo ''
+echo === Setup $me ===
 majorversion=$1
 
-[ -n "$majorversion" ] || { echo "$me: Parameter 1 is missing: majorversion"; exit 1; } 
+[ -n "$majorversion" ] || { >&2 echo "$me: Parameter 1 is missing: majorversion"; exit 1; } 
 
 lxc-setup lib/common
 
