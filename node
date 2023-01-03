@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Usage: lxc-setup node <majorversion: {N}>
+
+set +e
+
+majorversion=$1
+
+[ -n "$majorversion" ] || { echo "Parameter 1 is missing: majorversion"; exit 1; } 
+
+lxc-setup lib/common
+
+if ! test-command nvm; then
+	ensure-installed curl
+	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+	source $HOME/.bashrc
+	nvm install $majorversion
+	nvm alias default $majorversion
+elif [ $(node -v | tr "." "\n" | head -1 2>&1) != "v$majorversion" ]; then
+	nvm install $majorversion
+	nvm alias default $majorversion
+fi
+
+if ! test-command pm2; then
+	npm i pm2 -g
+fi
+
+set -e
+

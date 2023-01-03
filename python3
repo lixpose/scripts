@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Usage: lxc-setup python3
+
+set +e
+
+lxc-setup lib/common
+
+ensure-installed python3 python3-pip
+
+set -e
+

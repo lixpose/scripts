@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Usage: lxc-setup redhat
+
+set +e
+
+lxc-setup lib/common
+
+if test-command dnf; then
+	dnf up --refresh -y
+	dnf autoremove -y
+elif test-command yum; then
+	yum check-update
+	yum upgrade -y
+else
+	echo No package manager found.
+	return 1
+fi
+
+set -e
+

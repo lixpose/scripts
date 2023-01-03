@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# Usage: lxc-setup mbx-toolbox <platform: [ deb | rh ]> <branch: [ master | dev ]?>
+
+set +e
+
+platform=$1
+branch=${2=-master}
+
+[ -n "$platform" ] || { echo "Parameter 1 is missing: platform"; exit 1; } 
+
+lxc-setup lib/common
+
+if ! test-command mbx-version; then
+	mbxpath=/usr/local/mbx
+	mkdir -p $mbxpath
+	ensure-installed git
+	git clone --depth 1 https://github.com/martin-braun/mbx-toolbox.git /usr/local/mbx
+	echo '' >> $HOME/.bashrc
+	echo "export PATH=\$PATH:$mbxpath/bin/$platform:$mbxpath/bin" >> $HOME/.bashrc
+	echo "test -e $mbxpath/lib/init.bash && . $mbxpath/lib/init.bash" >> $HOME/.bashrc
+	\. "$HOME/.bashrc"
+	if [ "$branch" = "dev" ]; then
+		git -C "$mbxpath" config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+		git -C "$mbxpath" fetch --all
+		git -C "$mbxpath" checkout dev
+		mbx-upgrade
+	fi
+fi
+
+set -e
+

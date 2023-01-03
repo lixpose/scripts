@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Usage: lxc-setup debian
+
+set +e
+
+lxc-setup lib/common
+
+dpkg-reconfigure locales
+apt-get update && apt-get full-upgrade -y
+apt-get autoremove -y
+
+set -e
+
