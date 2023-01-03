@@ -3,15 +3,15 @@
 
 set +e
 
-LXC_TEMPLATE_BASE_URL="${LXC_TEMPLATE_BASE_URL:-https://raw.githubusercontent.com/lxc-compose/scripts/master}"
+LXC_SETUP_BASE_URL="${LXC_SETUP_BASE_URL:-https://raw.githubusercontent.com/lxc-compose/scripts/master}"
 
 lxc-setup() {
 s=$1
 shift
 if command -v "curl" >/dev/null 2>&1; then
-	\. /dev/stdin <<< "$(curl -s $LXC_TEMPLATE_BASE_URL/$s)"
+	\. /dev/stdin <<< "$(curl -s $LXC_SETUP_BASE_URL/$s)"
 elif command -v "wget" >/dev/null 2>&1; then
-	\. /dev/stdin <<< "$(wget -qO- $LXC_TEMPLATE_BASE_URL/$s)"
+	\. /dev/stdin <<< "$(wget -qO- $LXC_SETUP_BASE_URL/$s)"
 else
 	echo "No curl or wget found."
 	return 1
