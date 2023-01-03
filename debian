@@ -3,7 +3,7 @@
 
 set +e
 
-lxc-setup lib/common
+# lxc-setup lib/common
 
 dpkg-reconfigure locales
 apt-get update && apt-get full-upgrade -y
