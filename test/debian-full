@@ -3,6 +3,8 @@
 
 LXC_TEST_BRANCH="${LXC_TEST_BRANCH:-master}"
 
+trap 'echo "$ $BASH_COMMAND"' DEBUG
+
 \. /dev/stdin <<< "$(wget -qO- https://raw.githubusercontent.com/lxc-compose/scripts/$LXC_TEST_BRANCH/init)"
 lxc-setup prep/debian
 lxc-setup mbx-toolbox
@@ -10,4 +12,6 @@ lxc-setup python3
 lxc-setup node 18
 lxc-setup lemp 8.1
 lxc-setup composer
+
+trap - DEBUG
 
