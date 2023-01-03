@@ -3,6 +3,8 @@
 
 set +e
 
+me=$(basename "$0")
+
 lxc-setup lib/common
 
 ensure-installed python3 python3-pip

@@ -3,10 +3,11 @@
 
 set +e
 
+me=$(basename "$0")
 platform=$1
 branch=${2=-master}
 
-[ -n "$platform" ] || { echo "Parameter 1 is missing: platform"; exit 1; } 
+[ -n "$platform" ] || { echo "$me: Parameter 1 is missing: platform"; exit 1; } 
 
 lxc-setup lib/common
 
