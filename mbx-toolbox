@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
-# Usage: lxc-setup mbx-toolbox <platform: [ deb | rh ]> <branch: [ master | dev ]?>
+# Usage: lxc-setup mbx-toolbox <branch: [ master | dev ]?>
 
 set +e
 
 me=$(basename "${BASH_SOURCE[0]}")
-platform=$1
-branch=${2=-master}
-
-[ -n "$platform" ] || { echo "$me: Parameter 1 is missing: platform"; exit 1; } 
+branch=${1=-master}
 
 lxc-setup lib/common
 
@@ -17,7 +14,7 @@ if ! test-command mbx-version; then
 	ensure-installed git
 	git clone --depth 1 https://github.com/martin-braun/mbx-toolbox.git /usr/local/mbx
 	echo '' >> $HOME/.bashrc
-	echo "export PATH=\$PATH:$mbxpath/bin/$platform:$mbxpath/bin" >> $HOME/.bashrc
+	echo "export PATH=\$PATH:$mbxpath/bin/$DCODE:$mbxpath/bin" >> $HOME/.bashrc
 	echo "test -e $mbxpath/lib/init.bash && . $mbxpath/lib/init.bash" >> $HOME/.bashrc
 	\. "$HOME/.bashrc"
 	if [ "$branch" = "dev" ]; then

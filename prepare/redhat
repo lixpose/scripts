@@ -18,5 +18,7 @@ else
 	return 1
 fi
 
+$DCODE="rh"
+
 set -e
 

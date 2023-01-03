@@ -21,10 +21,13 @@ if ! test-command php; then
 	ensure-installed wget
 	ensure-installed zip
 	ensure-installed unzip
-	wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
-	echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php$phpversion.list
-	apt update
-	apt install \
+	if [ "$DCODE" = "deb" ]; then
+		ensure-installed lsb-release
+		wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+		echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php$phpversion.list
+		apt-get update
+	fi
+	ensure-installed \
 		php$phpversion \
 		php$phpversion-curl \
 		php$phpversion-mbstring \
@@ -32,8 +35,7 @@ if ! test-command php; then
 		php$phpversion-intl \
 		php$phpversion-sqlite3 \
 		php$phpversion-zip \
-		php$phpversion-fpm \
-		-y
+		php$phpversion-fpm
 			systemctl start php$phpversion-fpm
 			systemctl restart nginx
 fi
