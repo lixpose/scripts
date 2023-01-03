@@ -3,7 +3,7 @@
 
 set +e
 
-me=$(basename "$0")
+me=$(basename "${BASH_SOURCE[0]}")
 phpversion=$1
 
 [ -n "$phpversion" ] || { echo "$me: Parameter 1 is missing: phpversion"; exit 1; } 

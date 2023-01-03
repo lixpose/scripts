@@ -3,7 +3,7 @@
 
 set +e
 
-me=$(basename "$0")
+me=$(basename "${BASH_SOURCE[0]}")
 majorversion=$1
 
 [ -n "$majorversion" ] || { echo "$me: Parameter 1 is missing: majorversion"; exit 1; } 

@@ -3,7 +3,7 @@
 
 set +e
 
-me=$(basename "$0")
+me=$(basename "${BASH_SOURCE[0]}")
 platform=$1
 branch=${2=-master}
 

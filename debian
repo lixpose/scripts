@@ -3,7 +3,7 @@
 
 set +e
 
-me=$(basename "$0")
+me=$(basename "${BASH_SOURCE[0]}")
 
 # lxc-setup lib/common
 
