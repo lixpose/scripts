@@ -5,17 +5,21 @@ set +e
 
 LXC_SETUP_BASE_URL="${LXC_SETUP_BASE_URL:-https://raw.githubusercontent.com/lxc-compose/scripts/master}"
 
-lxc-setup() {
-s=$1
-shift
-if command -v "curl" >/dev/null 2>&1; then
-	\. /dev/stdin <<< "$(curl -s $LXC_SETUP_BASE_URL/$s)"
-elif command -v "wget" >/dev/null 2>&1; then
-	\. /dev/stdin <<< "$(wget -qO- $LXC_SETUP_BASE_URL/$s)"
-else
-	echo "No curl or wget found."
-	return 1
-fi
+wexec() {
+	url="$1"
+	shift
+	if command -v "curl" &>/dev/null; then
+		\. /dev/stdin <<< "$(curl -s "$url")"
+	elif command -v "wget" &>/dev/null; then
+		\. /dev/stdin <<< "$(wget -qO- "$url")"
+	else
+		echo "No curl or wget found." >&2
+		return 1
+	fi
+}
+
+lxcreq() {
+	wexec "$LXC_SETUP_BASE_URL/$1"
 }
 
 set -e

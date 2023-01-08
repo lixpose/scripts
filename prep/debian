@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Usage: lxc-setup debian
+# Usage: lxcreq debian
 
 set +e
 
@@ -7,7 +7,7 @@ me="prep/debian"
 echo ''
 echo === Setup $me ===
 
-# lxc-setup lib/common
+# lxcreq lib/common
 
 dpkg-reconfigure locales
 apt-get update && apt-get full-upgrade -y

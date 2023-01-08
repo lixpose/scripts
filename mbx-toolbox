@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Usage: lxc-setup mbx-toolbox <branch: [ master | dev ]?>
+# Usage: lxcreq mbx-toolbox <branch: [ master | dev ]?>
 
 set +e
 
@@ -8,12 +8,12 @@ echo ''
 echo === Setup $me ===
 branch=${1=-master}
 
-lxc-setup lib/common
+lxcreq lib/common
 
-if ! test-command mbx-version; then
+if ! testc mbx-version; then
 	mbxpath=/usr/local/mbx
 	mkdir -p $mbxpath
-	ensure-installed git
+	req git
 	git clone --depth 1 https://github.com/martin-braun/mbx-toolbox.git /usr/local/mbx
 	echo '' >> $HOME/.bashrc
 	echo "export PATH=\$PATH:$mbxpath/bin/$DCODE:$mbxpath/bin" >> $HOME/.bashrc

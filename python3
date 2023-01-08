@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Usage: lxc-setup python3
+# Usage: lxcreq python3
 
 set +e
 
@@ -7,9 +7,9 @@ me="python3"
 echo ''
 echo === Setup $me ===
 
-lxc-setup lib/common
+lxcreq lib/common
 
-ensure-installed python3 python3-pip
+req python3 python3-pip
 
 set -e
 

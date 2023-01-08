@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Usage: lxc-setup lemp <phpversion: {N.N}>
+# Usage: lxcreq lemp <phpversion: {N.N}>
 
 set +e
 
@@ -10,26 +10,26 @@ phpversion=$1
 
 [ -n "$phpversion" ] || { >&2 echo "$me: Parameter 1 is missing: phpversion"; exit 1; } 
 
-lxc-setup lib/common
+lxcreq lib/common
 
-if ! test-command nginx; then
-	ensure-installed nginx
+if ! testc nginx; then
+	req nginx
 	rm /etc/nginx/sites-enabled/default
 	rm -r /var/www/html
 	systemctl start nginx
 fi
 
-if ! test-command php; then
-	ensure-installed wget
-	ensure-installed zip
-	ensure-installed unzip
+if ! testc php; then
+	req wget
+	req zip
+	req unzip
 	if [ "$DCODE" = "deb" ]; then
-		ensure-installed lsb-release
+		req lsb-release
 		wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 		echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php$phpversion.list
 		apt-get update
 	fi
-	ensure-installed \
+	req \
 		php$phpversion \
 		php$phpversion-common \
 		php$phpversion-cli \
@@ -50,8 +50,8 @@ if ! test-command php; then
 			systemctl restart nginx
 fi
 
-if ! test-command mysql; then
-	ensure-installed mariadb-server
+if ! testc mysql; then
+	req mariadb-server
 fi
 
 set -e

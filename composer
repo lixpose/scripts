@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Usage: lxc-setup lemp <phpversion: {N.N}>
+# Usage: lxcreq lemp <phpversion: {N.N}>
 
 set +e
 
@@ -7,10 +7,10 @@ me="composer"
 echo ''
 echo === Setup $me ===
 
-lxc-setup lib/common
+lxcreq lib/common
 
-if ! test-command composer; then
-	if ! test-command php; then
+if ! testc composer; then
+	if ! testc php; then
 		>&2 echo "$me: Composer requires PHP. Aborting."
 		return 1
 	fi

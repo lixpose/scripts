@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Usage: lxc-setup redhat
+# Usage: lxcreq redhat
 
 set +e
 
@@ -7,12 +7,12 @@ me="prep/redhat"
 echo ''
 echo === Setup $me ===
 
-lxc-setup lib/common
+lxcreq lib/common
 
-if test-command dnf; then
+if testc dnf; then
 	dnf up --refresh -y
 	dnf autoremove -y
-elif test-command yum; then
+elif testc yum; then
 	yum check-update
 	yum upgrade -y
 else
