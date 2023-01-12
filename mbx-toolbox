@@ -13,7 +13,7 @@ lxcreq lib/common
 if ! testc mbx-version; then
 	mbxpath=/usr/local/mbx
 	mkdir -p $mbxpath
-	req git
+	pkgreq git
 	git clone --depth 1 https://github.com/martin-braun/mbx-toolbox.git /usr/local/mbx
 	echo '' >> $HOME/.bashrc
 	echo "export PATH=\$PATH:$mbxpath/bin/$DCODE:$mbxpath/bin" >> $HOME/.bashrc
