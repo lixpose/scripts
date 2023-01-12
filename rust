@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Usage: lxcreq rust
+
+set +e
+
+me="rust"
+echo ''
+echo === Setup $me ===
+
+lxcreq lib/common
+
+if ! testc rustc; then
+	wexec https://sh.rustup.rs
+	\. $HOME/.cargo/env
+fi
+
+set -e
+
