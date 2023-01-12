@@ -13,23 +13,23 @@ phpversion=$1
 lxcreq lib/common
 
 if ! testc nginx; then
-	req nginx
+	pkgreq nginx
 	rm /etc/nginx/sites-enabled/default
 	rm -r /var/www/html
 	systemctl start nginx
 fi
 
 if ! testc php; then
-	req wget
-	req zip
-	req unzip
+	pkgreq wget
+	pkgreq zip
+	pkgreq unzip
 	if [ "$DCODE" = "deb" ]; then
 		req lsb-release
 		wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 		echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php$phpversion.list
 		apt-get update
 	fi
-	req \
+	pkgreq \
 		php$phpversion \
 		php$phpversion-common \
 		php$phpversion-cli \
@@ -51,7 +51,7 @@ if ! testc php; then
 fi
 
 if ! testc mysql; then
-	req mariadb-server
+	pkgreq mariadb-server
 fi
 
 set -e

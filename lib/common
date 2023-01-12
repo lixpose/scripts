@@ -28,7 +28,7 @@ testc() {
 #   Also returns 1, if the existence of the package could not be verified or no matching package manager was found to install a package.
 #   Returns 1001, if the dot-rc of the current shell could not be reload.
 ###
-req() {
+pkgreq() {
 	if testc dpkg; then
 		for pkg in "$@"; do
 			if ! dpkg -l "$pkg" | grep -q ^ii; then

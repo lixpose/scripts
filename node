@@ -13,7 +13,7 @@ majorversion=$1
 lxcreq lib/common
 
 if ! testc nvm; then
-	req curl
+	pkgreq curl
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
 	source $HOME/.bashrc
 	nvm install $majorversion
