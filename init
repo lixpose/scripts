@@ -22,5 +22,7 @@ lxcreq() {
 	wexec "$LXC_SETUP_BASE_URL/$1"
 }
 
+lxcreq lib/common
+
 set -e
 

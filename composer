@@ -18,8 +18,7 @@ if ! testc composer; then
 	expected_checksum=$(php -r "copy('https://composer.github.io/installer.sig', 'php://stdout');")
 	php -r "copy('https://getcomposer.org/installer', '$tmp');"
 	actual_checksum="$(php -r "echo hash_file('sha384', '$tmp');")"
-	if [ "$expected_checksum" != "$actual_checksum" ]
-	then
+	if [ "$expected_checksum" != "$actual_checksum" ]; then
 		>&2 echo 'ERROR: Invalid installer checksum'
 		rm $tmp
 		exit 1
