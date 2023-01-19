@@ -7,8 +7,6 @@ me="python3"
 echo ''
 echo === Setup $me ===
 
-lxcreq lib/common
-
 pkgreq python3 python3-pip
 
 set -e

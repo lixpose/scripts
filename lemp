@@ -10,8 +10,6 @@ phpversion=$1
 
 [ -n "$phpversion" ] || { >&2 echo "$me: Parameter 1 is missing: phpversion"; exit 1; } 
 
-lxcreq lib/common
-
 if ! testc nginx; then
 	pkgreq nginx
 	rm /etc/nginx/sites-enabled/default

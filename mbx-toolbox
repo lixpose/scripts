@@ -8,8 +8,6 @@ echo ''
 echo === Setup $me ===
 branch=${1=-master}
 
-lxcreq lib/common
-
 if ! testc mbx-version; then
 	mbxpath=/usr/local/mbx
 	mkdir -p $mbxpath

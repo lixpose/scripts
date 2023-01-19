@@ -7,8 +7,6 @@ me="composer"
 echo ''
 echo === Setup $me ===
 
-lxcreq lib/common
-
 if ! testc composer; then
 	if ! testc php; then
 		>&2 echo "$me: Composer requires PHP. Aborting."
