@@ -8,7 +8,7 @@ echo ''
 echo === Setup $me ===
 phpversion=$1
 
-[ -n "$phpversion" ] || { >&2 echo "$me: Parameter 1 is missing: phpversion"; exit 1; } 
+test -n "$phpversion" || { >&2 echo "$me: Parameter 1 is missing: phpversion"; exit 1; } 
 
 if ! testc nginx; then
 	pkgreq nginx
