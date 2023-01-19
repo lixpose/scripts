@@ -9,7 +9,7 @@ echo === Setup $me ===
 
 if ! testc vim; then
 	pkgreq vim
-	echo "set number\nset relativenumber" > $HOME/.vimrc
+	echo -e "set number\nset relativenumber" > $HOME/.vimrc
 fi
 
 set -e
