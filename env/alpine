@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# Usage: lxcreq alpine
+# Usage: lxcreq alpine <libc: [ 'musl' | 'g' ]?> <utils: [ 'busybox' | 'gnu' ]?>
 
 set +e
 
@@ -13,6 +13,14 @@ echo === Setup $me ===
 
 apk update
 apk upgrade
+
+if [ "$1" = "g" ]; then
+	apk add gcompat
+fi
+
+if [ "$2" = "gnu" ]; then
+	apk add util-linux pciutils usbutils coreutils binutils findutils grep iproute2
+fi
 
 set -e
 
