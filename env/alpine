@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+# Usage: lxcreq alpine
+
+set +e
+
+export ENV_DIST_NAME="alpine"
+export ENV_DIST_CODE="alp"
+test -n "$ENV_SHELL_RC" || export ENV_SHELL_RC="$HOME/.profile"
+
+me="env/$ENV_DIST_NAME"
+echo ''
+echo === Setup $me ===
+
+apk update
+apk upgrade
+
+set -e
+

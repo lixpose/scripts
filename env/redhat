@@ -1,13 +1,15 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 # Usage: lxcreq redhat
 
 set +e
 
-me="env/redhat"
+export ENV_DIST_NAME="redhat"
+export ENV_DIST_CODE="rh"
+test -n "$ENV_SHELL_RC" || export ENV_SHELL_RC="$HOME/.bashrc"
+
+me="env/$ENV_DIST_NAME"
 echo ''
 echo === Setup $me ===
-
-lxcreq lib/common
 
 if testc dnf; then
 	dnf up --refresh -y
@@ -16,11 +18,9 @@ elif testc yum; then
 	yum check-update
 	yum upgrade -y
 else
-	echo No package manager found.
-	return 1
+	echo ! No package manager found. >&2
+	return 1001
 fi
-
-export DCODE="rh"
 
 set -e
 

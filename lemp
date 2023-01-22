@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 # Usage: lxcreq lemp <phpversion: {N.N}>
 
 set +e
@@ -21,7 +21,7 @@ if ! testc php; then
 	pkgreq wget
 	pkgreq zip
 	pkgreq unzip
-	if [ "$DCODE" = "deb" ]; then
+	if [ "$ENV_DIST_NAME" = "debian" ]; then
 		req lsb-release
 		wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 		echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php$phpversion.list

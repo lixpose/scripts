@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 # Skip when already sourced:
 test ! $LXC_COMPOSE_LIBLOAD_COMMON || return
@@ -20,23 +20,29 @@ testc() {
 ###
 # Ensure packages are installed using the default package manager and re-source rc.
 # Arguments:
-#   $@ - packages to install if not installed
+#   $@ - packages to install if not installed.
 # Outputs:
 #   Installer log or function error, otherwise nothing.
 # Returns:
 #   0, if packages were found or were installed successfully, otherwise the last error of the package manager. 
-#   Also returns 1, if the existence of the package could not be verified or no matching package manager was found to install a package.
-#   Returns 1001, if the dot-rc of the current shell could not be reload.
+#   Returns 1001, if the existence of the package could not be verified or no matching package manager was found to install a package.
 ###
 pkgreq() {
-	if testc dpkg; then
+	if testc apk; then
+		for pkg in "$@"; do
+			if apk info --installed --quiet $pkg; then
+				apk add $pkg || return
+				inst=1
+			fi
+		done
+	elif testc dpkg; then
 		for pkg in "$@"; do
 			if ! dpkg -l "$pkg" | grep -q ^ii; then
 				if testc apt-get; then
-					apt-get install $pkg -y
+					apt-get install $pkg -y || return
 				else
 					echo "Unable to ensure $pkg, because no package manager to install the package was found."
-					return 1
+					return 1001
 				fi
 				inst=1
 			fi
@@ -45,12 +51,12 @@ pkgreq() {
 		for pkg in "$@"; do
 			if ! rpm --nosignature --nodigest -q "$pkg" &>/dev/null; then
 				if testc dnf; then
-					dnf install $pkg -y
+					dnf install $pkg -y || return
 				elif testc yum; then
-					yum install $pkg -y
+					yum install $pkg -y || return
 				else
 					echo "Unable to ensure $pkg, because no package manager to install the package was found."
-					return 1
+					return 1001
 				fi
 				inst=1
 			fi
@@ -58,17 +64,60 @@ pkgreq() {
 	elif testc brew; then
 		for pkg in "$@"; do
 			if ! brew list $pkg &>/dev/null; then
-				brew install $pkg -y
+				brew install $pkg -y || return
 				inst=1
 			fi
 		done
 	else
 		echo "Unable to ensure $@, because no package detection was found."
-		return 1
+		return 1001
 	fi
 	[ $inst ] || return
-	rc="$HOME/.${SHELL##*/}rc"
-	[ -f "$rc" ] || return 1001
-	\. "$rc"
+	rc="$HOME/.profile"
+	[ -f "$rc" ] && \. "$rc"
+	rc="$HOME/.$(basename $SHELL)rc"
+	[ -f "$rc" ] && \. "$rc"
+}
+
+###
+# Ensure given services are enabled and started.
+# Arguments:
+#   $@ - services to enable/start.
+# Outputs:
+#   Service log or function error, otherwise nothing.
+# Returns:
+#   0, if services were found or were added/started successfully, otherwise the last error of the service manager. 
+###
+svcreq() {
+	if testc systemctl; then
+		for svc in "$@"; do
+			systemctl start $svc && systemctl enable $svc
+		done
+	elif testc rc-service; then
+		for svc in "$@"; do
+			rc-service $svc start && rc-update add $svc default
+		done
+	fi
+}
+
+###
+# Ensure given services are enable and started. If a service already runs, it will be restarted.
+# Arguments:
+#   $@ - services to enable/start/restart.
+# Outputs:
+#   Service log or function error, otherwise nothing.
+# Returns:
+#   0, if services were found or were added/started/restarted successfully, otherwise the last error of the service manager. 
+###
+svcrun() {
+	if testc systemctl; then
+		for svc in "$@"; do
+			systemctl restart $svc && systemctl enable $svc
+		done
+	elif testc rc-service; then
+		for svc in "$@"; do
+			rc-service $svc restart && rc-update add $svc default
+		done
+	fi
 }
 

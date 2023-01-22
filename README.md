@@ -40,3 +40,7 @@ if [ $hatch_php ]; then
 fi
 ```
 
+## KVM
+
+Although lxc-compose is designed for Linux Containers, it should be compatible with KVMs as well. There are also some KVM scripts in the `kvm` sub-directory.
+

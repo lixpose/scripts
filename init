@@ -1,9 +1,9 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 # Usage: \. /dev/stdin <<< "$(wget -qO- https://raw.githubusercontent.com/lxc-compose/scripts/master/init)"
 
 set +e
 
-LXC_SETUP_BASE_URL="${LXC_SETUP_BASE_URL:-https://raw.githubusercontent.com/lxc-compose/scripts/master}"
+test -n "$LXC_SETUP_BASE_URL" || LXC_SETUP_BASE_URL="https://raw.githubusercontent.com/lxc-compose/scripts/master"
 
 wexec() {
 	url="$1"

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 # Usage: lxcreq lemp <phpversion: {N.N}>
 
 set +e

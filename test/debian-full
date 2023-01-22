@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 # Usage: \. /dev/stdin <<< "$(wget -qO- https://raw.githubusercontent.com/lxc-compose/scripts/master/test/debian-full)"
 
 LXC_TEST_BRANCH="${LXC_TEST_BRANCH:-master}"

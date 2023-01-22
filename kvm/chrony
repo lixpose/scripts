@@ -1,0 +1,22 @@
+#!/usr/bin/env sh
+# Usage: lxcreq kvm/chrony
+
+set +e
+
+me="kvm/chrony"
+echo ''
+echo === Setup $me ===
+
+pkgreq chrony
+svcreq chronyd
+echo ptp_kvm > /etc/modules-load.d/ptp_kvm.config
+echo kvm-clock > /sys/devices/system/clocksource/clocksource0/current_clocksource
+chrony_conf="/etc/chrony/chrony.conf"
+
+if ! grep -q "refclock PHC" "$chrony_conf"; then
+	echo "refclock PHC /dev/ptp0 poll 2" >> $chrony_conf
+	echo "refclock PHC has been set, changes will be applied after reboot."
+fi
+
+set -e
+
