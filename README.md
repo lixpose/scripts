@@ -33,10 +33,10 @@ lxcreq python3
 # post-install steps php
 if [ $hatch_php ]; then
 	php_ini="/etc/php/$phpversion/fpm/php.ini"
-	sed -ri 's/(memory_limit[	 ]*=).*$/\1 512M/' "$php_ini" || exit
-	sed -ri 's/(post_max_size[	 ]*=).*$/\1 32M/' "$php_ini" || exit
-	sed -ri 's/(upload_max_filesize[	 ]*=).*$/\1 32M/' "$php_ini" || exit
-	sed -ri 's/(serialize_precision[	 ]*=).*$/\1 -1/' "$php_ini" || exit
+	sed -ri 's/(memory_limit[	 ]*=).*$/\1 512M/' "$php_ini"
+	sed -ri 's/(post_max_size[	 ]*=).*$/\1 32M/' "$php_ini"
+	sed -ri 's/(upload_max_filesize[	 ]*=).*$/\1 32M/' "$php_ini"
+	sed -ri 's/(serialize_precision[	 ]*=).*$/\1 -1/' "$php_ini"
 fi
 ```
 
