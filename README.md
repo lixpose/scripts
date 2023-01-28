@@ -4,7 +4,7 @@ Automate dependency installation for linux containers. Also works interactively.
 
 ## About
 
-lxc-compose is a set of useful bash scripts to help to install dependencies in a fast passion on fresh linux containers. You can build a clean bash script for a project or even leverage it interactively from the terminal. lxc-compose are nothing more than templates and functions that let your script look cleaner. For stability, consider forking and modifying the `init` script to point to the right repository.
+lxc-compose is a set of useful shell scripts to help to install dependencies in a fast passion on fresh linux containers. You can build a clean bash script for a project or even leverage it interactively from the terminal. lxc-compose are nothing more than templates and functions that let your script look cleaner. For stability, consider forking and modifying the `init` script to point to the right repository.
 
 The helper functions are designed to be re-run without issue, i.e. packages will only be installed, if they haven't been installed already.
 
