@@ -1,10 +1,10 @@
-# lxcp (Linux Compose)
+# lixpose (Linux Compose)
 
 Automate dependency installation for linux environments. Works for containers, VMs and in-place interactively.
 
 ## About
 
-lxcp is a set of useful shell scripts to help to install dependencies in a fast passion on linux environments. Originally designed for fresh LXC instances you can build a clean shell script for a project or even leverage it interactively from the terminal. lxcp is nothing more than a set of templates and functions that let your setup script look cleaner and it can even be used to setup entire workstations. For stability, consider forking and modifying the `init` script to point to the right repository.
+lixpose is a set of useful shell scripts to help to install dependencies in a fast passion on linux environments. Originally designed for fresh LXC instances you can build a clean shell script for a project or even leverage it interactively from the terminal. lixpose is nothing more than a set of templates and functions that let your setup script look cleaner and it can even be used to setup entire workstations. For stability, consider forking and modifying the `init` script to point to the right repository.
 
 The helper functions are designed to be re-run without issue, i.e. packages will only be installed, if they haven't been installed already.
 
@@ -13,8 +13,8 @@ The helper functions are designed to be re-run without issue, i.e. packages will
 ## How-To
 
 ```
-# initialize lxcp:
-\. /dev/stdin <<< "$(wget -qO- https://raw.githubusercontent.com/lxcp/scripts/master/init)"
+# initialize lixpose:
+\. /dev/stdin <<< "$(wget -qO- https://raw.githubusercontent.com/lixpose/scripts/master/init)"
 
 # initialize environment:
 lxcreq env/debian
@@ -42,9 +42,9 @@ fi
 
 ## KVM
 
-Although lxcp was designed for Linux Containers in mind, it is compatible with KVMs as well. There are some KVM scripts in the `kvm` sub-directory.
+Although lixpose was designed for Linux Containers in mind, it is compatible with KVMs as well. There are some KVM scripts in the `kvm` sub-directory.
 
 ## WL
 
-For workstations there is a `wl` directory that offers scripts to setup wayland compositors and compatible GUI software. If there are no options, the directory also features X software that is compatible with `xwayland` in the `xwl` sub directory.
+For workstations there is a `wl` directory that offers scripts to setup wayland compositors and compatible GUI software. If there are no options, the directory also features X software that is compatible with `xwayland` in the `x` sub directory.
 

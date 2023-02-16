@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# Usage: lxcreq debian
+# Usage: lixreq debian
 
 set +e
 

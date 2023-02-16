@@ -1,12 +1,12 @@
 #!/usr/bin/env sh
-# Usage: lxcreq node <majorversion: {N}>
+# Usage: lixreq node <majorversion: {N}>
 
 set +e
 
 me="node"
 echo ''
 echo === Setup $me ===
-majorversion=$1
+majorversion=${1=-lts}
 
 test -n "$majorversion" || { >&2 echo "$me: Parameter 1 is missing: majorversion"; exit 1; } 
 
@@ -14,9 +14,12 @@ if ! testc nvm; then
 	pkgreq curl
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
 	source $HOME/.bashrc
-	nvm install $majorversion
-	nvm alias default $majorversion
-elif [ $(node -v | tr "." "\n" | head -1 2>&1) != "v$majorversion" ]; then
+fi
+
+if [ "$majorversion" = "lts" ]; then
+	nvm install --lts
+	nvm alias default 'lts/*'
+else
 	nvm install $majorversion
 	nvm alias default $majorversion
 fi

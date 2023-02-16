@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+# Usage: lixreq template/sample
+
+set +e
+
+me="template/sample"
+echo ''
+echo === Setup $me ===
+
+# Add your setup instructions here
+
+set -e
+

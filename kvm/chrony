@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# Usage: lxcreq kvm/chrony
+# Usage: lixreq kvm/chrony
 
 set +e
 

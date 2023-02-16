@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# Usage: lxcreq alpine <libc: [ 'musl' | 'g' ]?> <utils: [ 'busybox' | 'gnu' ]?>
+# Usage: lixreq alpine <libc: [ 'musl' | 'g' ]?> <utils: [ 'busybox' | 'gnu' ]?>
 
 set +e
 

@@ -1,17 +1,17 @@
 #!/usr/bin/env sh
-# Usage: \. /dev/stdin <<< "$(wget -qO- https://raw.githubusercontent.com/lxc-compose/scripts/master/test/debian-full)"
+# Usage: \. /dev/stdin <<< "$(wget -qO- https://raw.githubusercontent.com/lixpose/scripts/master/test/debian-full)"
 
-LXC_TEST_BRANCH="${LXC_TEST_BRANCH:-master}"
+LIX_TEST_BRANCH="${LIX_TEST_BRANCH:-master}"
 
 trap 'echo "$ $BASH_COMMAND"' DEBUG
 
-\. /dev/stdin <<< "$(wget -qO- https://raw.githubusercontent.com/lxc-compose/scripts/$LXC_TEST_BRANCH/init)"
-lxcreq prep/debian
-lxcreq mbx-toolbox
-lxcreq python3
-lxcreq node 18
-lxcreq lemp 8.1
-lxcreq composer
+\. /dev/stdin <<< "$(wget -qO- https://raw.githubusercontent.com/lixpose/scripts/$LIX_TEST_BRANCH/init)"
+lixreq prep/debian
+lixreq mbx-toolbox
+lixreq python3
+lixreq node 18
+lixreq lemp 8.1
+lixreq composer
 
 trap - DEBUG
 

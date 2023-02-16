@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# Usage: lxcreq vim
+# Usage: lixreq vim
 
 set +e
 

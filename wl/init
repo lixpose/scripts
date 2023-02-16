@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+# Usage: lixreq wl/init
+
+set +e
+
+me="wl/init"
+echo ''
+echo === Setup $me ===
+
+set -e
+

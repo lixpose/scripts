@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
-# Usage: \. /dev/stdin <<< "$(wget -qO- https://raw.githubusercontent.com/lxcp/scripts/master/init)"
+# Usage: \. /dev/stdin <<< "$(wget -qO- https://raw.githubusercontent.com/lixpose/scripts/master/init)"
 
 set +e
 
-test -n "$LXCP_SETUP_BASE_URL" || LXCP_SETUP_BASE_URL="https://raw.githubusercontent.com/lxcp/scripts/master"
+test -n "$LIX_SETUP_BASE_URL" || LIX_SETUP_BASE_URL="https://raw.githubusercontent.com/lixpose/scripts/master"
 
 wexec() {
 	url="$1"
@@ -21,10 +21,10 @@ wexec() {
 lxcreq() {
 	path="$1"
 	shift
-	if [ -z "$LXCP_SETUP_LOCAL_PATH" ]; then
-		wexec "$LXCP_SETUP_BASE_URL/$path" "$@"
+	if [ -z "$LIX_SETUP_LOCAL_PATH" ]; then
+		wexec "$LIX_SETUP_BASE_URL/$path" "$@"
 	else
-		"$LXCP_SETUP_LOCAL_PATH/$PATH" "$@"
+		"$LIX_SETUP_LOCAL_PATH/$PATH" "$@"
 	fi
 }
 

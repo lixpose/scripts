@@ -1,14 +1,12 @@
 #!/usr/bin/env sh
-# Usage: lxcreq mbx-toolbox <branch: [ master | dev ]?>
+# Usage: lixreq mbx-toolbox <branch: [ master | dev ]?>
 
 set +e
 
 me="mbx"
 echo ''
 echo === Setup $me ===
-branch=$1
-
-test -n "$branch" || branch="master"
+branch=${1-master}
 
 if ! testc mbx-version; then
 	mbxpath=/usr/local/mbx
@@ -19,7 +17,7 @@ if ! testc mbx-version; then
 	echo '# mbx' >> $ENV_SHELL_RC
 	echo 'export MBX_PATH="'"$mbxpath"'"' >> $ENV_SHELL_RC
 	echo 'export PATH=$PATH:/$MBX_PATH/bin/'"$ENV_DIST_CODE"':$MBX_PATH/bin' >> $ENV_SHELL_RC
-	echo "test -e $MBX_PATH/lib/init.sh && . $MBX_PATH/lib/init.sh" >> $ENV_SHELL_RC
+	echo 'test -e "$MBX_PATH/lib/init.sh" && \. "$MBX_PATH/lib/init.sh"' >> $ENV_SHELL_RC
 	\. "$ENV_SHELL_RC"
 	if [ "$branch" = "dev" ]; then
 		git -C "$mbxpath" config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
