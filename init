@@ -1,16 +1,16 @@
 #!/usr/bin/env sh
-# Usage: \. /dev/stdin <<< "$(wget -qO- https://raw.githubusercontent.com/lxc-compose/scripts/master/init)"
+# Usage: \. /dev/stdin <<< "$(wget -qO- https://raw.githubusercontent.com/lxcp/scripts/master/init)"
 
 set +e
 
-test -n "$LXC_SETUP_BASE_URL" || LXC_SETUP_BASE_URL="https://raw.githubusercontent.com/lxc-compose/scripts/master"
+test -n "$LXCP_SETUP_BASE_URL" || LXCP_SETUP_BASE_URL="https://raw.githubusercontent.com/lxcp/scripts/master"
 
 wexec() {
 	url="$1"
 	shift
-	if command -v "curl" &>/dev/null; then
+	if command -v "curl" > /dev/null 2>&1; then
 		\. /dev/stdin <<< "$(curl --proto '=https' --tlsv1.2 -s "$url")"
-	elif command -v "wget" &>/dev/null; then
+	elif command -v "wget" > /dev/null 2>&1; then
 		\. /dev/stdin <<< "$(wget --secure-protocol=TLSv1_2 -qO- "$url")"
 	else
 		echo "No curl or wget found." >&2
@@ -19,7 +19,13 @@ wexec() {
 }
 
 lxcreq() {
-	wexec "$LXC_SETUP_BASE_URL/$1"
+	path="$1"
+	shift
+	if [ -z "$LXCP_SETUP_LOCAL_PATH" ]; then
+		wexec "$LXCP_SETUP_BASE_URL/$path" "$@"
+	else
+		"$LXCP_SETUP_LOCAL_PATH/$PATH" "$@"
+	fi
 }
 
 lxcreq lib/common

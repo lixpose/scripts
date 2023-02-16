@@ -15,11 +15,11 @@ apk update
 apk upgrade
 
 if [ "$1" = "g" ]; then
-	apk add gcompat
+	pkgreq gcompat
 fi
 
 if [ "$2" = "gnu" ]; then
-	apk add util-linux pciutils usbutils coreutils binutils findutils grep iproute2
+	pkgreq util-linux pciutils usbutils coreutils binutils findutils grep iproute2
 fi
 
 set -e
