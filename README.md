@@ -1,6 +1,6 @@
 # lixpose (Linux Compose)
 
-Automate dependency installation for linux environments. Works for containers, VMs and in-place interactively.
+Automate dependency installation for linux environments. Works for containers, VMs and bare metal. Use in scripts or interactively.
 
 ## About
 
