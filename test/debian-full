@@ -5,12 +5,15 @@ LIX_TEST_BRANCH="${LIX_TEST_BRANCH:-master}"
 
 trap 'echo "$ $BASH_COMMAND"' DEBUG
 
-\. /dev/stdin <<< "$(wget -qO- https://raw.githubusercontent.com/lixpose/scripts/$LIX_TEST_BRANCH/init)"
-lixreq prep/debian
-lixreq mbx-toolbox
+\. /dev/stdin << EOF
+$(wget -qO- https://raw.githubusercontent.com/lixpose/scripts/$LIX_TEST_BRANCH/init)
+EOF
+
+lixreq env/debian
+lixreq mbx
 lixreq python3
 lixreq node 18
-lixreq lemp 8.1
+lixreq lemp 8.2
 lixreq composer
 
 trap - DEBUG

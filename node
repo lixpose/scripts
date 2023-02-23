@@ -13,7 +13,7 @@ test -n "$majorversion" || { >&2 echo "$me: Parameter 1 is missing: majorversion
 if ! testc nvm; then
 	pkgreq curl bash
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
-	cat /dev/stdin >> $ENV_SHELL_RC << EOF
+	cat - >> $ENV_SHELL_RC << EOF
 # nvm
 if [ -s "\$HOME/.nvm/nvm.sh" ]; then
   export NVM_DIR="\$HOME/.nvm"

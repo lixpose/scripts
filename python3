@@ -7,7 +7,8 @@ me="python3"
 echo ''
 echo === Setup $me ===
 
-pkgreq python3 python3-pip
+pkgreq python3
+pkgreq python3-pip || pkgreq py3-pip
 
 set -e
 
