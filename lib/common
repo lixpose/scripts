@@ -83,7 +83,8 @@ pkgreq() {
 		echo "Unable to ensure $@, because no package detection was found."
 		return 1001
 	fi
-	test $inst && sourcerc
+	test ! $inst && return 0
+	sourcerc
 }
 
 ###
