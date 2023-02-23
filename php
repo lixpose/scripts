@@ -39,6 +39,11 @@ if ! testc php; then
 		php$phpversion-sqlite3 \
 		php$phpversion-xml \
 		php$phpversion-zip
+	if [ "$ENV_DIST_NAME" = "alpine" ]; then
+		echo '# php' >> $ENV_SHELL_RC
+		echo "alias php=php$phpversion" >> $ENV_SHELL_RC
+		sourcerc
+	fi
 fi
 
 set -e
