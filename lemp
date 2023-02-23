@@ -19,6 +19,10 @@ fi
 
 if ! testc php; then
 	lixreq php $phpversion
+	if [ "$ENV_DIST_NAME" = "alpine" ]; then
+		phpversion="$(echo $phpversion | sed 's/\.//g')"
+	fi
+	pkgreg php$phpversion-fpm
 	svcrun php$phpversion-fpm
 	svcrun nginx
 fi

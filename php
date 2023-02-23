@@ -14,8 +14,10 @@ if ! testc php; then
 	pkgreq wget
 	pkgreq zip
 	pkgreq unzip
+	pkgmysql="mysql"
 	if [ "$ENV_DIST_NAME" = "alpine" ]; then
 		phpversion="$(echo $phpversion | sed 's/\.//g')"
+		pkgmysql="mysqli"
 	elif [ "$ENV_DIST_NAME" = "debian" ]; then
 		req lsb-release
 		wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
@@ -32,13 +34,11 @@ if ! testc php; then
 		php$phpversion-imap \
 		php$phpversion-intl \
 		php$phpversion-mbstring \
-		php$phpversion-mysql \
+		php$phpversion-$pkgmysql \
 		php$phpversion-soap \
 		php$phpversion-sqlite3 \
 		php$phpversion-xml \
-		php$phpversion-xmlrpc \
-		php$phpversion-zip \
-		php$phpversion-fpm
+		php$phpversion-zip
 fi
 
 set -e
