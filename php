@@ -15,7 +15,7 @@ if ! testc php; then
 	pkgreq zip
 	pkgreq unzip
 	if [ "$ENV_DIST_NAME" = "alpine" ]; then
-		phpversion="$(echo $phpversion | sed 's/\.//g'
+		phpversion="$(echo $phpversion | sed 's/\.//g')"
 	elif [ "$ENV_DIST_NAME" = "debian" ]; then
 		req lsb-release
 		wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
