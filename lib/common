@@ -18,6 +18,17 @@ testc() {
 }
 
 ###
+# Source the primary shell rc file, if it exists.
+# Outputs:
+#   Nothing.
+# Returns:
+#   0, if sourcing was successful.
+###
+sourcerc() {
+	test -f "$ENV_SHELL_RC" && \. "$ENV_SHELL_RC"
+}
+
+###
 # Ensure packages are installed using the default package manager and re-source rc.
 # Arguments:
 #   $@ - packages to install if not installed.
@@ -72,7 +83,7 @@ pkgreq() {
 		echo "Unable to ensure $@, because no package detection was found."
 		return 1001
 	fi
-	test $inst && test -f "$ENV_SHELL_RC" && \. "$ENV_SHELL_RC"
+	test $inst && sourcerc
 }
 
 ###
