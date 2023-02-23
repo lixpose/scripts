@@ -18,9 +18,11 @@ elif testcmd yum; then
 	yum check-update
 	yum upgrade -y
 else
-	echo ! No package manager found. >&2
+	echo No package manager found. >&2
 	return 1001
 fi
+
+sourcerc # sourcing right after env setup will prevent unintended re-installs
 
 set -e
 

@@ -15,5 +15,7 @@ dpkg-reconfigure locales
 apt-get update && apt-get full-upgrade -y
 apt-get autoremove -y
 
+sourcerc # sourcing right after env setup will prevent unintended re-installs
+
 set -e
 
