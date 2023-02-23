@@ -25,7 +25,8 @@ testc() {
 #   0, if sourcing was successful.
 ###
 sourcerc() {
-	test -f "$ENV_SHELL_RC" && \. "$ENV_SHELL_RC"
+	test ! -f "$ENV_SHELL_RC" && return 0
+	\. "$ENV_SHELL_RC"
 }
 
 ###
