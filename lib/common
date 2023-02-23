@@ -20,13 +20,13 @@ testcmd() {
 ###
 # Source the primary shell rc file, if it exists.
 # Outputs:
-#   Nothing.
+#   A message that states that the file was reloaded, if it exists, otherwise nothing.
 # Returns:
-#   0, if sourcing was successful.
+#   0, if sourcing was successful or if there is nothing to source from.
 ###
 sourcerc() {
-	test ! -f "$ENV_SHELL_RC" && return 0
-	\. "$ENV_SHELL_RC"
+	test -s "$ENV_SHELL_RC" && \. "$ENV_SHELL_RC" && echo "$ENV_SHELL_RC reloaded."
+	return 0
 }
 
 ###
