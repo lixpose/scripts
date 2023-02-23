@@ -17,7 +17,9 @@ if ! testcmd node; then
 			pkgreq nodejs npm
 		else
 			pkgreq nodejs~=$majorversion
-			read npmv < <(echo $(node -e "fetch('https://nodejs.org/dist/index.json').then(r=>r.json()).then(e=>console.info(e.filter(a=>a.version=='$(node -v)')[0].npm))"))
+			read npmv << EOF
+$(node -e "fetch('https://nodejs.org/dist/index.json').then(r=>r.json()).then(e=>console.info(e.filter(a=>a.version=='$(node -v)')[0].npm))"))
+EOF
 			pkgreq npm~=$npmv
 		fi
 		npm i npx pm2 -g
