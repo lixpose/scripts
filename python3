@@ -8,7 +8,8 @@ echo ''
 echo === Setup $me ===
 
 pkgreq python3
-pkgreq python3-pip || pkgreq py3-pip
+pkgreq python3-pip 2> /dev/null || pkgreq py3-pip 2> /dev/null \
+	|| { echo "Neither python3-pip nor py3-pip could be installed" >&2 && return 1 }
 
 set -e
 
