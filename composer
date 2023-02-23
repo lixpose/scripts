@@ -9,7 +9,7 @@ echo === Setup $me ===
 
 if ! testc composer; then
 	if ! testc php; then
-		>&2 echo "$me: Composer requires PHP. Aborting."
+		echo "$me: Composer requires PHP. Aborting." >&2
 		return 1
 	fi
 	tmp=$(mktemp)

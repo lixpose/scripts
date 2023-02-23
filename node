@@ -6,7 +6,7 @@ set +e
 me="node"
 echo ''
 echo === Setup $me ===
-majorversion=${1=-lts}
+majorversion=${1-lts}
 
 test -n "$majorversion" || { >&2 echo "$me: Parameter 1 is missing: majorversion"; exit 1; } 
 
