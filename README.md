@@ -14,7 +14,9 @@ The helper functions are designed to be re-run without issue, i.e. packages will
 
 ```
 # initialize lixpose:
-\. /dev/stdin <<< "$(wget -qO- https://raw.githubusercontent.com/lixpose/scripts/master/init)"
+\. /dev/stdin << EOF
+	$(wget -qO- https://raw.githubusercontent.com/lixpose/scripts/master/init)
+EOF
 
 # initialize environment:
 lxcreq env/debian
