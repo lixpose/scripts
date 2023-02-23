@@ -3,11 +3,11 @@
 
 set +e
 
-me="ssh"
+me="openssh"
 echo ''
 echo === Setup $me ===
 
-pkgreq ssh
+pkgreq openssh
 svcreq sshd
 
 set -e
