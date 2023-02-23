@@ -28,7 +28,13 @@ if [ -s "\$HOME/.nvm/nvm.sh" ]; then
   export NVM_DIR="\$HOME/.nvm"
   nvm() {
 	unset -f nvm
-	[ -s "\$NVM_DIR/nvm.sh" ] && \. "\$NVM_DIR/nvm.sh" # This loads nvm
+EOF
+if ! [ "$ENV_SHELL_RC" = "$HOME/.bashrc" ]; then
+	cat - >> $ENV_SHELL_RC << EOF
+	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+EOF
+fi
+cat - >> $ENV_SHELL_RC << EOF
 	nvm \$@
 }
   DEFAULT_NODE_VER="\$(cat "\$NVM_DIR/alias/default" 2> /dev/null)"
