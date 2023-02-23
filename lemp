@@ -10,24 +10,24 @@ phpversion=$1
 
 test -n "$phpversion" || { echo "$me: Parameter 1 is missing: phpversion" >&2; exit 1; } 
 
-if ! testc nginx; then
+if ! testcmd nginx; then
 	pkgreq nginx
 	rm /etc/nginx/sites-enabled/default
 	rm -r /var/www/html
-	svcrun nginx
 fi
 
-if ! testc php; then
+if ! testcmd php; then
 	lixreq php $phpversion
 	if [ "$ENV_DIST_NAME" = "alpine" ]; then
 		phpversion="$(echo $phpversion | sed 's/\.//g')"
 	fi
-	pkgreg php$phpversion-fpm
-	svcrun php$phpversion-fpm
-	svcrun nginx
 fi
 
-if ! testc mysql; then
+pkgreg php$phpversion-fpm
+svcrun php$phpversion-fpm
+svcrun nginx
+
+if ! testcmd mysql; then
 	pkgreq mariadb-server
 fi
 

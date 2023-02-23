@@ -13,7 +13,7 @@ export LXC_COMPOSE_LIBLOAD_COMMON=1
 # Returns:
 #   0, if the command exists.
 ###
-testc() {
+testcmd() {
 	command -v "$1" > /dev/null 2>&1
 }
 
@@ -40,17 +40,17 @@ sourcerc() {
 #   Returns 1001, if the existence of the package could not be verified or no matching package manager was found to install a package.
 ###
 pkgreq() {
-	if testc apk; then
+	if testcmd apk; then
 		for pkg in "$@"; do
 			if ! apk info --installed --quiet $pkg; then
 				apk add $pkg || return
 				inst=1
 			fi
 		done
-	elif testc dpkg; then
+	elif testcmd dpkg; then
 		for pkg in "$@"; do
 			if ! dpkg -l "$pkg" | grep -q ^ii; then
-				if testc apt-get; then
+				if testcmd apt-get; then
 					apt-get install $pkg -y || return
 				else
 					echo "Unable to ensure $pkg, because no package manager to install the package was found."
@@ -59,12 +59,12 @@ pkgreq() {
 				inst=1
 			fi
 		done
-	elif testc rpm; then
+	elif testcmd rpm; then
 		for pkg in "$@"; do
 			if ! rpm --nosignature --nodigest -q "$pkg" > /dev/null 2>&1; then
-				if testc dnf; then
+				if testcmd dnf; then
 					dnf install $pkg -y || return
-				elif testc yum; then
+				elif testcmd yum; then
 					yum install $pkg -y || return
 				else
 					echo "Unable to ensure $pkg, because no package manager to install the package was found."
@@ -73,7 +73,7 @@ pkgreq() {
 				inst=1
 			fi
 		done
-	elif testc brew; then
+	elif testcmd brew; then
 		for pkg in "$@"; do
 			if ! brew list $pkg > /dev/null 2>&1; then
 				brew install $pkg -y || return
@@ -81,11 +81,30 @@ pkgreq() {
 			fi
 		done
 	else
-		echo "Unable to ensure $@, because no package detection was found."
+		echo "Unable to require $@, because no package detection was found." >&2
 		return 1001
 	fi
 	test ! $inst && return 0
 	sourcerc
+}
+
+###
+# Try to install any of the given packages in the given order using the default package manager and re-source rc.
+# Please ensure to check if an installation is required (i.e. using testcmd)
+# Arguments:
+#   $@ - packages to try to install one from.
+# Outputs:
+#   Error message if none of the package manager calls returned 0 implying that none of the packages could be installed, otherwise nothing.
+# Returns:
+#   0, if any package was found and installed successfully, otherwise 1.
+#   Some, but not all package managers, pass and cause 0 when a package is already installed.
+#   this is not guaranteed.
+###
+pkgiao() {
+	for pkg in "$@"; do
+		pkgreq "$pkg" 2> /dev/null && return
+	done
+	echo "Unable to install one of $@." >&2 && return 1
 }
 
 ###
@@ -98,11 +117,11 @@ pkgreq() {
 #   0, if services were found or were added/started successfully, otherwise the last error of the service manager. 
 ###
 svcreq() {
-	if testc rc-service; then
+	if testcmd rc-service; then
 		for svc in "$@"; do
 			rc-service $svc start && rc-update add $svc default
 		done
-	elif testc systemctl; then
+	elif testcmd systemctl; then
 		for svc in "$@"; do
 			systemctl start $svc && systemctl enable $svc
 		done
@@ -119,11 +138,11 @@ svcreq() {
 #   0, if services were found or were added/started/restarted successfully, otherwise the last error of the service manager. 
 ###
 svcrun() {
-	if testc rc-service; then
+	if testcmd rc-service; then
 		for svc in "$@"; do
 			rc-service $svc restart && rc-update add $svc default
 		done
-	elif testc systemctl; then
+	elif testcmd systemctl; then
 		for svc in "$@"; do
 			systemctl restart $svc && systemctl enable $svc
 		done

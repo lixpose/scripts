@@ -22,7 +22,7 @@ EOF
 lxcreq env/debian
 
 # prepare additional post-install steps for php
-testc php || hatch_php=1
+testcmd php || hatch_php=1
 
 # ensure some packages are installed:
 pkgreq software-properties-common gnupg redis-server imagemagick

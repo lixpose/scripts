@@ -10,7 +10,7 @@ majorversion=${1-lts}
 
 test -n "$majorversion" || { echo "$me: Parameter 1 is missing: majorversion" >&2; exit 1; } 
 
-if ! testc node; then
+if ! testcmd node; then
 	if [ "$ENV_DIST_NAME" = "alpine" ]; then
 		# Alpine will not support node binaries supplied by nvm, so falling back to apk
 		if [ "$majorversion" = "lts" ]; then
@@ -22,22 +22,21 @@ if ! testc node; then
 		fi
 		npm i npx pm2 -g
 	else
-		if ! testc nvm; then
+		if ! testcmd nvm; then
 			pkgreq curl bash
 			curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
-			cat - >> $ENV_SHELL_RC << EOF
+			cat - >> "$ENV_SHELL_RC" << EOF
 # nvm
 if [ -s "\$HOME/.nvm/nvm.sh" ]; then
   export NVM_DIR="\$HOME/.nvm"
   nvm() {
 	unset -f nvm
 EOF
-if ! [ "$ENV_SHELL_RC" = "$HOME/.bashrc" ]; then
-	cat - >> $ENV_SHELL_RC << EOF
+			test "$ENV_SHELL_RC" = "$HOME/.bashrc" && cat - >> "$ENV_SHELL_RC" << EOF
 	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 EOF
-fi
-cat - >> $ENV_SHELL_RC << EOF
+		fi
+		cat - >> "$ENV_SHELL_RC" << EOF
 	nvm \$@
 }
   DEFAULT_NODE_VER="\$(cat "\$NVM_DIR/alias/default" 2> /dev/null)"
@@ -50,19 +49,18 @@ done
   fi
 fi
 EOF
-sourcerc
-		fi
-		if [ "$majorversion" = "lts" ]; then
-			nvm install --lts
-			nvm alias default 'lts/*'
-		else
-			nvm install $majorversion
-			nvm alias default $majorversion
-		fi
+		sourcerc
 	fi
-	if ! testc pm2; then
-		npm i pm2 -g
+	if [ "$majorversion" = "lts" ]; then
+		nvm install --lts
+		nvm alias default 'lts/*'
+	else
+		nvm install $majorversion
+		nvm alias default $majorversion
 	fi
+fi
+if ! testcmd pm2; then
+	npm i pm2 -g
 fi
 
 set -e

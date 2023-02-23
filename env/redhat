@@ -11,10 +11,10 @@ me="env/$ENV_DIST_NAME"
 echo ''
 echo === Setup $me ===
 
-if testc dnf; then
+if testcmd dnf; then
 	dnf up --refresh -y
 	dnf autoremove -y
-elif testc yum; then
+elif testcmd yum; then
 	yum check-update
 	yum upgrade -y
 else
