@@ -12,11 +12,11 @@ wexec() {
 	shift
 	if command -v "curl" > /dev/null 2>&1; then
 		\. /dev/stdin << EOF 
-			$(curl --proto '=https' --tlsv1.2 -s "$url")
+			$(curl -s "$url")
 EOF
 	elif command -v "wget" > /dev/null 2>&1; then
 		\. /dev/stdin << EOF 
-			$(wget --secure-protocol=TLSv1_2 -qO- "$url")
+			$(wget -qO- "$url")
 EOF
 	else
 		echo "No curl or wget found." >&2
