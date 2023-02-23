@@ -14,11 +14,12 @@ if ! testc nginx; then
 	pkgreq nginx
 	rm /etc/nginx/sites-enabled/default
 	rm -r /var/www/html
-	systemctl start nginx
+	svcrun nginx
 fi
 
 if ! testc php; then
 	lixreq php $phpversion
+	svcrun php$phpversion-fpm
 	svcrun nginx
 fi
 

@@ -22,7 +22,6 @@ if [ -s "\$HOME/.nvm/nvm.sh" ]; then
     [ -s "\$NVM_DIR/nvm.sh" ] && \. "\$NVM_DIR/nvm.sh" # This loads nvm
     nvm \$@
   }
-  [ -s "\$NVM_DIR/bash_completion" ] && \\. "\$NVM_DIR/bash_completion"
   DEFAULT_NODE_VER="\$(cat "\$NVM_DIR/alias/default" 2> /dev/null)"
   while [ -s "\$NVM_DIR/alias/\$DEFAULT_NODE_VER" ] && [ ! -z "\$DEFAULT_NODE_VER" ]; do
     DEFAULT_NODE_VER="\$(cat "\$NVM_DIR/alias/\$DEFAULT_NODE_VER" 2> /dev/null)"

@@ -37,7 +37,6 @@ if ! testc php; then
 		php$phpversion-xmlrpc \
 		php$phpversion-zip \
 		php$phpversion-fpm
-			svcrun php$phpversion-fpm
 fi
 
 set -e
