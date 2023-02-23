@@ -10,37 +10,47 @@ majorversion=${1-lts}
 
 test -n "$majorversion" || { >&2 echo "$me: Parameter 1 is missing: majorversion"; exit 1; } 
 
-if ! testc nvm; then
-	pkgreq curl bash
-	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
-	cat - >> $ENV_SHELL_RC << EOF
+if ! testc node; then
+	if [ "$ENV_DIST_NAME" = "alpine" ]; then
+		# Alpine will not support node binaries supplied by nvm, so falling back to apk
+		if [ "$majorversion" = "lts" ]; then
+			pkgreq nodejs
+		else
+			pkgreq nodejs~=$majorversion
+		fi
+	else
+		if ! testc nvm; then
+			pkgreq curl bash
+			curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+			cat - >> $ENV_SHELL_RC << EOF
 # nvm
 if [ -s "\$HOME/.nvm/nvm.sh" ]; then
   export NVM_DIR="\$HOME/.nvm"
   nvm() {
-    unset -f nvm
-    [ -s "\$NVM_DIR/nvm.sh" ] && \. "\$NVM_DIR/nvm.sh" # This loads nvm
-    nvm \$@
-  }
+	unset -f nvm
+	[ -s "\$NVM_DIR/nvm.sh" ] && \. "\$NVM_DIR/nvm.sh" # This loads nvm
+	nvm \$@
+}
   DEFAULT_NODE_VER="\$(cat "\$NVM_DIR/alias/default" 2> /dev/null)"
   while [ -s "\$NVM_DIR/alias/\$DEFAULT_NODE_VER" ] && [ ! -z "\$DEFAULT_NODE_VER" ]; do
-    DEFAULT_NODE_VER="\$(cat "\$NVM_DIR/alias/\$DEFAULT_NODE_VER" 2> /dev/null)"
-  done
+	DEFAULT_NODE_VER="\$(cat "\$NVM_DIR/alias/\$DEFAULT_NODE_VER" 2> /dev/null)"
+done
   DEFAULT_NODE_VER_PATH="\$(find \$NVM_DIR/versions/node -maxdepth 1 -name "v\${DEFAULT_NODE_VER#v}*" | sort -rV | head -1)"
   if [ ! -z "\$DEFAULT_NODE_VER_PATH" ]; then
-    export PATH="\$DEFAULT_NODE_VER_PATH/bin:\$PATH"
+	export PATH="\$DEFAULT_NODE_VER_PATH/bin:\$PATH"
   fi
 fi
 EOF
-	sourcerc
-fi
-
-if [ "$majorversion" = "lts" ]; then
-	nvm install --lts
-	nvm alias default 'lts/*'
-else
-	nvm install $majorversion
-	nvm alias default $majorversion
+sourcerc
+		fi
+		if [ "$majorversion" = "lts" ]; then
+			nvm install --lts
+			nvm alias default 'lts/*'
+		else
+			nvm install $majorversion
+			nvm alias default $majorversion
+		fi
+	fi
 fi
 
 if ! testc pm2; then
