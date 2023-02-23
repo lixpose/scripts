@@ -35,6 +35,7 @@ lxcreq() {
 }
 
 lxcreq lib/common
+sourcerc
 
 set -e
 
