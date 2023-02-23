@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+# Usage: lixreq ssh
+
+set +e
+
+me="ssh"
+echo ''
+echo === Setup $me ===
+
+pkgreq ssh
+svcreq sshd
+
+set -e
+
