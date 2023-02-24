@@ -17,7 +17,7 @@ if ! testcmd php; then
 	if [ "$ENV_DIST_NAME" = "alpine" ]; then
 		phpversion="$(echo $phpversion | sed 's/\.//g')"
 	elif [ "$ENV_DIST_NAME" = "debian" ]; then
-		req lsb-release
+		pkgreq lsb-release
 		wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 		echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php$phpversion.list
 		apt-get update
