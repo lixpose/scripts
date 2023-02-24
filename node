@@ -27,7 +27,6 @@ EOF
 		if ! testcmd nvm; then
 			pkgreq curl bash
 			echo '' >> "$ENV_SHELL_RC"
-			echo '#nvm' >> "$ENV_SHELL_RC"
 			curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
 			sed -i "/\bThis loads nvm\b/d" "$ENV_SHELL_RC"
 			if [ ! "$ENV_SHELL_RC" = "$HOME/.bashrc" ]; then
