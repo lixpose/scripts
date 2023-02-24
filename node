@@ -62,8 +62,9 @@ if [ -f "\$NVM_DIR/nvm.sh" ]; then
 	fi
 fi
 EOF
-		sourcerc
-		chmod +x "$NVM_DIR/nvm.sh"
+			sourcerc
+			chmod +x "$NVM_DIR/nvm.sh"
+		fi
 	fi
 	if [ "$majorversion" = "lts" ]; then
 		nvm install --lts
