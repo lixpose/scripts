@@ -13,7 +13,7 @@ if [ -z "$MBX_VERSION" ]; then
 	mkdir -p $mbxpath
 	pkgreq git
 	git clone --depth 1 https://github.com/martin-braun/mbx-toolbox.git $mbxpath
-	echo '' >> $HOME/.bashrc
+	echo '' >> "$ENV_SHELL_RC"
 	echo '# mbx' >> "$ENV_SHELL_RC"
 	echo 'export MBX_PATH="'"$mbxpath"'"' >> "$ENV_SHELL_RC"
 	echo 'export PATH=$PATH:/$MBX_PATH/bin/'"$ENV_DIST_CODE"':$MBX_PATH/bin' >> "$ENV_SHELL_RC"
