@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+# Usage: lixreq vim
+
+set +e
+
+me="nvim"
+echo ''
+echo === Setup $me ===
+
+if ! testcmd nvim; then
+	pkgreq nvim
+	echo "set clipboard^=unnamed,unnamedplus" >> $HOME/.vimrc
+	echo "set number" >> $HOME/.vimrc
+	echo "set relativenumber" >> $HOME/.vimrc
+	echo '' >> "$ENV_SHELL_RC"
+	echo 'alias vim="nvim"' >> "$ENV_SHELL_RC"
+fi
+
+set -e
+
