@@ -31,22 +31,15 @@ EOF
 			curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
 			sed -i "/\bThis loads nvm\b/d" "$ENV_SHELL_RC"
 			if [ ! "$ENV_SHELL_RC" = "$HOME/.bashrc" ]; then
-				if [ "$XDG_CONFIG_HOME" = "" ]; then
-					cat - >> "$ENV_SHELL_RC" << EOF
-NVM_DIR="$XDG_CONFIG_HOME/nvm"
+				cat - >> "$ENV_SHELL_RC" << EOF
+export NVM_DIR="\$([ -z "\${XDG_CONFIG_HOME-}" ] && printf %s "\${HOME}/.nvm" || printf %s "\${XDG_CONFIG_HOME}/nvm")"
 EOF
-				else
-					cat - >> "$ENV_SHELL_RC" << EOF
-NVM_DIR="$HOME/.nvm"
-EOF
-				fi
 			fi
 			cat - >> "$ENV_SHELL_RC" << EOF
 if [ -f "\$NVM_DIR/nvm.sh" ]; then
 	nvm() {
-		nvm() {
-			"\$NVM_DIR/nvm.sh" \$@
-		}
+		unset -f nvm
+		test -s "\$NVM_DIR/nvm.sh" && \\. "\$NVM_DIR/nvm.sh"
 		test -s "\$NVM_DIR/bash_completion" && \\. "\$NVM_DIR/bash_completion"
 		nvm \$@
 	}
