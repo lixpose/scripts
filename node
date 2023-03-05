@@ -58,12 +58,14 @@ EOF
 			chmod +x "$NVM_DIR/nvm.sh"
 		fi
 	fi
-	if [ "$majorversion" = "lts" ]; then
-		nvm install --lts
-		nvm alias default 'lts/*'
-	else
-		nvm install $majorversion
-		nvm alias default $majorversion
+	if testcmd nvm; then
+		if [ "$majorversion" = "lts" ]; then
+			nvm install --lts
+			nvm alias default 'lts/*'
+		else
+			nvm install $majorversion
+			nvm alias default $majorversion
+		fi
 	fi
 fi
 if ! testcmd pm2; then
