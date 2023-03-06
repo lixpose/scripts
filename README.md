@@ -19,7 +19,7 @@ The helper functions are designed to be re-run without issue, i.e. packages will
 EOF
 
 # initialize environment:
-lxcreq env/debian
+lixreq env/debian
 
 # prepare additional post-install steps for php
 testcmd php || hatch_php=1
@@ -28,9 +28,9 @@ testcmd php || hatch_php=1
 pkgreq software-properties-common gnupg redis-server imagemagick
 
 # ensure some package-kits are installed and configured:
-lxcreq lemp 8.4 # nginx, mariaDB, php8.4
-lxcreq node 18
-lxcreq python3
+lixreq lemp 8.4 # nginx, mariaDB, php8.4
+lixreq node 18
+lixreq python3
 
 # post-install steps php
 if [ $hatch_php ]; then

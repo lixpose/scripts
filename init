@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 # Usage: \. /dev/stdin << EOF
-#	$(wget -qO- https://raw.githubusercontent.com/lixpose/scripts/master/init)
+# $(wget -qO- https://raw.githubusercontent.com/lixpose/scripts/master/init)
 # EOF
 
 set +e
@@ -24,7 +24,7 @@ EOF
 	fi
 }
 
-lxcreq() {
+lixreq() {
 	path="$1"
 	shift
 	if [ -z "$LIX_SETUP_LOCAL_PATH" ]; then
@@ -34,7 +34,7 @@ lxcreq() {
 	fi
 }
 
-lxcreq lib/common
+lixreq lib/common
 
 set -e
 
