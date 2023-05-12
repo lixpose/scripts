@@ -19,7 +19,7 @@ if ! testcmd php; then
 	fi
 fi
 
-pkgreg php$phpversion-fpm
+pkgreq php$phpversion-fpm
 svcrun php$phpversion-fpm
 svcrun nginx
 
