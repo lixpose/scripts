@@ -36,22 +36,22 @@ if ! testcmd php; then
 		php$phpversion-pgsql \
 		php$phpversion-sqlite3 \
 		php$phpversion-pdo \
-		php$phpversion-pdo-mysql \
-		php$phpversion-pdo-pgsql \
-		php$phpversion-pdo-sqlite \
-		php$phpversion-json \
 		php$phpversion-phar \
 		php$phpversion-tokenizer \
 		php$phpversion-dom \
 		php$phpversion-xml \
 		php$phpversion-xmlwriter \
+		php$phpversion-json \
 		php$phpversion-zip
-	pkgreqany php$phpversion-mysql php$phpversion-mysqli
-	if [ "$ENV_DIST_NAME" = "alpine" ]; then
-		echo '# php' >> "$ENV_SHELL_RC"
-		echo "alias php=php$phpversion" >> "$ENV_SHELL_RC"
-		sourcerc
-	fi
+			pkgreqany php$phpversion-mysql php$phpversion-mysqli
+			pkgreqany php$phpversion-pdo_mysql php$phpversion-pdo-mysql
+			pkgreqany php$phpversion-pdo_pgsql php$phpversion-pdo-pgsql
+			pkgreqany php$phpversion-pdo_sqlite php$phpversion-pdo-sqlite
+			if [ "$ENV_DIST_NAME" = "alpine" ]; then
+				echo '# php' >> "$ENV_SHELL_RC"
+				echo "alias php=php$phpversion" >> "$ENV_SHELL_RC"
+				sourcerc
+			fi
 fi
 
 set -e
