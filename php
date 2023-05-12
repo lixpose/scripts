@@ -35,11 +35,12 @@ if ! testcmd php; then
 		php$phpversion-soap \
 		php$phpversion-sqlite3 \
 		php$phpversion-pdo \
-		php$phpversion-xml \
 		php$phpversion-json \
 		php$phpversion-phar \
 		php$phpversion-tokenizer \
 		php$phpversion-dom \
+		php$phpversion-xml \
+		php$phpversion-xmlwriter \
 		php$phpversion-zip
 	pkgreqany php$phpversion-mysql php$phpversion-mysqli
 	if [ "$ENV_DIST_NAME" = "alpine" ]; then
