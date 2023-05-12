@@ -21,8 +21,7 @@ if ! testcmd composer; then
 		rm $tmp
 		exit 1
 	fi
-	php $tmp
-	mv -f $HOME/composer.phar /usr/local/bin/composer
+	mv -f $tmp /usr/local/bin/composer
 	rm $tmp
 fi
 
