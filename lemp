@@ -19,13 +19,10 @@ if ! testcmd php; then
 	lixreq php $phpversion
 fi
 
+lixreq mariadb
 pkgreq php$phpversion-fpm
 svcrunany php$phpversion-fpm php-fpm$phpversion
 svcrun nginx
-
-if ! testcmd mysql; then
-	pkgreqany mariadb mariadb-server
-fi
 
 set -e
 

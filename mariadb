@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+# Usage: lixreq mariadb
+
+set +e
+
+me="mariadb"
+echo ''
+echo === Setup $me ===
+
+if ! testcmd mysql; then
+	pkgreqany mariadb mariadb-server
+	svcrun mariadbd || true
+fi
+
+set -e
+
