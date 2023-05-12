@@ -43,7 +43,7 @@ pkgreq() {
 	if testcmd apk; then
 		for pkg in "$@"; do
 			if ! apk info --installed --quiet $pkg; then
-				apk add $pkg || return
+				apk add --no-cache $pkg || return
 				inst=1
 			fi
 		done
