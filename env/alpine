@@ -17,6 +17,7 @@ if [ -n "$branch" ]; then
 	sed -i "s#alpinelinux\\.org/alpine/.\*/#alpinelinux.org/alpine/$branch/#g" /etc/apk/repositories
 fi
 
+echo '' > /etc/motd
 apk update
 apk upgrade
 
