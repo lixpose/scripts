@@ -32,6 +32,7 @@ if ! testcmd php; then
 		php$phpversion-intl \
 		php$phpversion-mbstring \
 		php$phpversion-fileinfo \
+		php$phpversion-session \
 		php$phpversion-soap \
 		php$phpversion-pgsql \
 		php$phpversion-sqlite3 \
