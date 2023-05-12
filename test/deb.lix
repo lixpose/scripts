@@ -3,7 +3,8 @@
 
 LIX_TEST_BRANCH="${LIX_TEST_BRANCH:-master}"
 
-trap 'echo "$ $BASH_COMMAND"' DEBUG
+set -e
+set -x
 
 \. /dev/stdin << EOF
 $(wget -qO- https://raw.githubusercontent.com/lixpose/scripts/$LIX_TEST_BRANCH/init)
@@ -15,6 +16,7 @@ lixreq python3
 lixreq node 18
 lixreq lemp 8.2
 lixreq composer
+lixreq rust
 
-trap - DEBUG
-
+set +x
+set +e
