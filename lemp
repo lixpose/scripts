@@ -24,7 +24,7 @@ svcrunany php$phpversion-fpm php-fpm$phpversion
 svcrun nginx
 
 if ! testcmd mysql; then
-	pkgreq mariadb-server
+	pkgreqany mariadb mariadb-server
 fi
 
 set -e
