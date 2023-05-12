@@ -33,8 +33,12 @@ if ! testcmd php; then
 		php$phpversion-mbstring \
 		php$phpversion-fileinfo \
 		php$phpversion-soap \
+		php$phpversion-pgsql \
 		php$phpversion-sqlite3 \
 		php$phpversion-pdo \
+		php$phpversion-pdo-mysql \
+		php$phpversion-pdo-pgsql \
+		php$phpversion-pdo-sqlite \
 		php$phpversion-json \
 		php$phpversion-phar \
 		php$phpversion-tokenizer \
