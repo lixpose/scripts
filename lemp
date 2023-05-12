@@ -11,15 +11,8 @@ phpversion="$1"
 test -n "$phpversion" || { echo "$me: Parameter 1 is missing: phpversion" >&2; exit 1; } 
 
 lixreq nginx
-
-if ! testcmd php; then
-	if [ "$ENV_DIST_NAME" = "alpine" ]; then
-		phpversion="$(echo $phpversion | sed 's/\.//g')"
-	fi
-	lixreq php $phpversion
-fi
-
 lixreq mariadb
+lixreq php $phpversion
 pkgreq php$phpversion-fpm
 svcrunany php$phpversion-fpm php-fpm$phpversion
 svcrun nginx
