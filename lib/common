@@ -100,7 +100,7 @@ pkgreq() {
 #   Some, but not all package managers, pass and cause 0 when a package is already installed.
 #   this is not guaranteed.
 ###
-pkgiao() {
+pkgreqany() {
 	for pkg in "$@"; do
 		pkgreq "$pkg" 2> /dev/null && return
 	done
@@ -129,6 +129,23 @@ svcreq() {
 }
 
 ###
+# Ensure any of the given services is enabled and started.
+# Only the first existing service from the list will be enabled.
+# Arguments:
+#   $@ - services to try to add.
+# Outputs:
+#   Error message if none of the service calls returned 0 implying that none of the services could be enabled, otherwise nothing.
+# Returns:
+#   0, if any service was found and enabled successfully, otherwise 1.
+###
+svcreqany() {
+	for svc in "$@"; do
+		svcreq "$svc" 2> /dev/null && return
+	done
+	echo "Unable to enable/start one of $@." >&2 && return 1
+}
+
+###
 # Ensure given services are enable and started. If a service already runs, it will be restarted.
 # Arguments:
 #   $@ - services to enable/start/restart.
@@ -147,5 +164,22 @@ svcrun() {
 			systemctl restart $svc && systemctl enable $svc
 		done
 	fi
+}
+
+###
+# Ensure any of the given services is enabled and started. If a service already runs, it will be restarted.
+# Only the first existing service from the list will be restarted.
+# Arguments:
+#   $@ - services to try to add.
+# Outputs:
+#   Error message if none of the service calls returned 0 implying that none of the services could be enabled, otherwise nothing.
+# Returns:
+#   0, if any service was found and enabled successfully, otherwise 1.
+###
+svcrunany() {
+	for svc in "$@"; do
+		svcrun "$svc" 2> /dev/null && return
+	done
+	echo "Unable to enable/start one of $@." >&2 && return 1
 }
 

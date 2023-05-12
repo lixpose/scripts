@@ -8,7 +8,7 @@ echo ''
 echo === Setup $me ===
 
 pkgreq python3
-pkgiao python3-pip py3-pip
+pkgreqany python3-pip py3-pip
 
 set -e
 

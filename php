@@ -35,7 +35,7 @@ if ! testcmd php; then
 		php$phpversion-sqlite3 \
 		php$phpversion-xml \
 		php$phpversion-zip
-	pkgiao php$phpversion-mysql php$phpversion-mysqli
+	pkgreqany php$phpversion-mysql php$phpversion-mysqli
 	if [ "$ENV_DIST_NAME" = "alpine" ]; then
 		echo '# php' >> "$ENV_SHELL_RC"
 		echo "alias php=php$phpversion" >> "$ENV_SHELL_RC"
