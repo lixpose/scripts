@@ -9,7 +9,9 @@ echo === Setup $me ===
 
 if ! testcmd mysql; then
 	pkgreqany mariadb mariadb-server
-	svcrun mariadbd || true
+	pkgreq mariadb-client || true
+	/etc/init.d/mariadb setup || true
+	svcrun mariadb || true
 fi
 
 set -e
