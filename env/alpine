@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
-# Usage: lixreq alpine <libc: [ 'musl' | 'g' ]?> <utils: [ 'busybox' | 'gnu' ]?>
+# Usage: lixreq alpine <libc: [ 'musl' | 'g' ]?> <utils: [ 'bb' | 'gnu' ]?> <branch: v{N.NN}?
+# g = gcompat, bb = busybox
 
 set +e
 
@@ -10,6 +11,11 @@ test -n "$ENV_SHELL_RC" || export ENV_SHELL_RC="$HOME/.profile"
 me="env/$ENV_DIST_NAME"
 echo ''
 echo === Setup $me ===
+branch="$1"
+
+if [ -n "$branch" ]; then
+	sed -i "s#alpinelinux\\.org/alpine/.\*/#alpinelinux.org/alpine/$branch/#g" /etc/apk/repositories
+fi
 
 apk update
 apk upgrade
