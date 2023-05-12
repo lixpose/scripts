@@ -22,7 +22,8 @@ if ! testcmd composer; then
 		exit 1
 	fi
 	chmod +x $tmp
-	mv -f $tmp /usr/local/bin/composer
+	php $tmp
+	mv -f $HOME/composer.phar /usr/local/bin/composer
 	rm $tmp
 fi
 
