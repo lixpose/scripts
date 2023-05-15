@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+# Usage: lixreq redis
+
+set +e
+
+me="redis"
+echo ''
+echo === Setup $me ===
+
+pkgreq redis
+svcrun redis
+
+set -e
+
