@@ -1,20 +1,26 @@
 #!/usr/bin/env sh
-# Usage: lixreq nginx
+# Usage: lixreq nginx <logrotate: {N}?> <anon: 'N'|'y'?>
 
 set +e
 
 me="nginx"
 echo ''
 echo === Setup $me ===
+logrotate="${1-0}"
+anon="${2}"
 
 if ! testcmd nginx; then
 	pkgreq nginx
 	rm /etc/nginx/sites-enabled/default
 	rm -r /var/www/html
-	# anonymize IPs in access.log:
-	sed -ri 's@access_log[	 ]*.*$@map $remote_addr $remote_addr_anon {\n\t\t~(?P<ip>\\d+\\.\\d+\\.\\d+)\\. $ip.0;\n\t\t~(?P<ip>[^:]+:[^:]+): $ip::;\n\t\t127.0.0.1 $remote_addr;\n\t\t::1 $remote_addr;\n\t\tdefault 0.0.0.0;\n\t}\n\n\tlog_format access_log_format '"'"'$remote_addr_anon - $remote_user [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent"'"'"';\n\n\taccess_log /var/log/nginx/access.log access_log_format;@' /etc/nginx/nginx.conf 
-	# remove logs daily:
-	sed -ri 's@rotate[	 0-9]+@rotate 0@' /etc/logrotate.d/nginx
+	case "$anon" in
+		[yY][eE][sS]|[yY])
+		# anonymize IPs in access.log:
+		sed -ri 's@access_log[	 ]*.*$@map $remote_addr $remote_addr_anon {\n\t\t~(?P<ip>\\d+\\.\\d+\\.\\d+)\\. $ip.0;\n\t\t~(?P<ip>[^:]+:[^:]+): $ip::;\n\t\t127.0.0.1 $remote_addr;\n\t\t::1 $remote_addr;\n\t\tdefault 0.0.0.0;\n\t}\n\n\tlog_format access_log_format '"'"'$remote_addr_anon - $remote_user [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent"'"'"';\n\n\taccess_log /var/log/nginx/access.log access_log_format;@' /etc/nginx/nginx.conf 
+		;;
+	esac
+	# update logrotation
+	sed -ri "s@rotate[	 0-9]+@rotate $logrotate@" /etc/logrotate.d/nginx
 	svcrun nginx
 fi
 
