@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# Usage: lixreq lemp <phpversion: {N.N}>
+# Usage: lixreq lemp <phpversion: {N.N}> <logrotate: {N}?> <anon: 'N'|'y'?>
 
 set +e
 
@@ -7,6 +7,8 @@ me="lemp"
 echo ''
 echo === Setup $me ===
 phpversion="$1"
+logrotate="${2-0}"
+anon="${3}"
 
 test -n "$phpversion" || { echo "$me: Parameter 1 is missing: phpversion" >&2; exit 1; } 
 
@@ -15,7 +17,7 @@ lixreq mariadb
 lixreq php $phpversion
 pkgreq php$phpversion-fpm
 svcrunany php$phpversion-fpm php-fpm$phpversion
-svcrun nginx
+svcrun nginx $logrotate $anon
 
 set -e
 
