@@ -19,7 +19,8 @@ fi
 
 echo '' > /etc/motd
 apk update
-apk upgrade
+apk add --upgrade apk-tools
+apk upgrade --available
 
 if [ "$1" = "g" ]; then
 	pkgreq gcompat
