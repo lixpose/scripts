@@ -1,0 +1,23 @@
+#!/usr/bin/env sh
+# Usage: \. /dev/stdin <<< "$(wget -qO- https://raw.githubusercontent.com/lixpose/scripts/master/test/debian-full)"
+
+LIX_TEST_BRANCH="${LIX_TEST_BRANCH:-master}"
+
+set -e
+set -x
+
+\. /dev/stdin << EOF
+$(wget -qO- https://raw.githubusercontent.com/lixpose/scripts/$LIX_TEST_BRANCH/init)
+EOF
+
+lixreq env/alpine
+lixreq openssh
+lixreq mbx
+lixreq python3
+lixreq node 18
+lixreq lemp 8.2
+lixreq composer
+lixreq rust
+
+set +x
+set +e

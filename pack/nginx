@@ -3,7 +3,7 @@
 
 set +e
 
-me="nginx"
+me="pack/nginx"
 echo ''
 echo === Setup $me ===
 logrotate="${1-0}"

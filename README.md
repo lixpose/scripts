@@ -28,9 +28,9 @@ testcmd php || hatch_php=1
 pkgreq software-properties-common gnupg redis-server imagemagick
 
 # ensure some package-kits are installed and configured:
-lixreq lemp 8.4 # nginx, mariaDB, php8.4
-lixreq node 18
-lixreq python3
+lixreq pack/lemp 8.4 # nginx, mariaDB, php8.4
+lixreq pack/node 18
+lixreq pack/python3
 
 # post-install steps php
 if [ $hatch_php ]; then
@@ -44,9 +44,9 @@ fi
 
 ## KVM
 
-Although lixpose was designed for Linux Containers in mind, it is compatible with KVMs as well. There are some KVM scripts in the `kvm` sub-directory.
+Although lixpose was designed for Linux Containers in mind, it is compatible with KVMs as well. There are some KVM scripts in the `pack/kvm` sub-directory.
 
 ## WL
 
-For workstations there is a `wl` directory that offers scripts to setup wayland compositors and compatible GUI software. If there are no options, the directory also features X software that is compatible with `xwayland` in the `x` sub directory.
+For workstations there is a `pack/wl` directory that offers scripts to setup wayland compositors and compatible GUI software. If there are no options, the directory also features X software that is compatible with `xwayland` in the `pack/wl/x` sub directory.
 

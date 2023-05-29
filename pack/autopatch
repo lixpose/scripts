@@ -3,7 +3,7 @@
 
 set +e
 
-me="autopatch"
+me="pack/autopatch"
 echo ''
 echo === Setup $me ===
 crontime=${1-"5 4 * * *"}

@@ -3,7 +3,7 @@
 
 set +e
 
-me="template/sample"
+me="template/package"
 echo ''
 echo === Setup $me ===
 

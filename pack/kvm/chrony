@@ -3,7 +3,7 @@
 
 set +e
 
-me="kvm/chrony"
+me="pack/kvm/chrony"
 echo ''
 echo === Setup $me ===
 

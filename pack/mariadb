@@ -3,7 +3,7 @@
 
 set +e
 
-me="mariadb"
+me="pack/mariadb"
 echo ''
 echo === Setup $me ===
 

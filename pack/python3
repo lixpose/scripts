@@ -3,7 +3,7 @@
 
 set +e
 
-me="python3"
+me="pack/python3"
 echo ''
 echo === Setup $me ===
 

@@ -3,7 +3,7 @@
 
 set +e
 
-me="php"
+me="pack/php"
 echo ''
 echo === Setup $me ===
 phpversion="$1"

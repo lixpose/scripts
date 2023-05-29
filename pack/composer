@@ -3,7 +3,7 @@
 
 set +e
 
-me="composer"
+me="pack/composer"
 echo ''
 echo === Setup $me ===
 

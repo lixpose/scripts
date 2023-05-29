@@ -1,14 +1,14 @@
 #!/usr/bin/env sh
-# Usage: lixreq redis
+# Usage: lixreq ssh
 
 set +e
 
-me="redis"
+me="pack/openssh"
 echo ''
 echo === Setup $me ===
 
-pkgreq redis
-svcrun redis
+pkgreq openssh
+svcreq sshd
 
 set -e
 

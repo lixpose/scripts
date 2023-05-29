@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+set -e
+
+\. /dev/stdin << EOF
+$(wget -qO- https://raw.githubusercontent.com/lixpose/scripts/master/init)
+EOF
+
+lixreq env/debian
+lixreq vim
+lixreq mbx dev
+
+set +e
+

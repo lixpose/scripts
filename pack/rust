@@ -3,7 +3,7 @@
 
 set +e
 
-me="rust"
+me="pack/rust"
 echo ''
 echo === Setup $me ===
 

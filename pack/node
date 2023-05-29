@@ -3,7 +3,7 @@
 # EnvVars: $NODE_DOWNLOAD_URL_TARGZ, $NODE_DOWNLOAD_URL_TARGZ_SHA256
 set +e
 
-me="node"
+me="pack/node"
 echo ''
 echo === Setup $me ===
 majorversion="${1-lts}"

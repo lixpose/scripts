@@ -3,7 +3,7 @@
 
 set +e
 
-me="mbx"
+me="pack/mbx"
 echo ''
 echo === Setup $me ===
 branch=${1-master}
