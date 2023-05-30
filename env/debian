@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# Usage: lixreq debian
+# Usage: lixreq env/debian
 
 set +e
 
@@ -11,6 +11,7 @@ me="env/$ENV_DIST_NAME"
 echo ''
 echo === Setup $me ===
 
+lixreq lib/common
 dpkg-reconfigure locales
 apt-get update && apt-get full-upgrade -y
 apt-get autoremove -y

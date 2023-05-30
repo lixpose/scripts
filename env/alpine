@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# Usage: lixreq alpine <libc: [ 'musl' | 'g' ]?> <utils: [ 'bb' | 'gnu' ]?> <branch: v{N.NN}?
+# Usage: lixreq env/alpine <libc: [ 'musl' | 'g' ]?> <utils: [ 'bb' | 'gnu' ]?> <branch: v{N.NN}?
 # g = gcompat, bb = busybox
 
 set +e
@@ -12,6 +12,8 @@ me="env/$ENV_DIST_NAME"
 echo ''
 echo === Setup $me ===
 branch="$1"
+
+lixreq lib/common
 
 if [ -n "$branch" ]; then
 	sed -i "s#alpinelinux\\.org/alpine/.\*/#alpinelinux.org/alpine/$branch/#g" /etc/apk/repositories

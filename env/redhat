@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# Usage: lixreq redhat
+# Usage: lixreq env/redhat
 
 set +e
 
@@ -10,6 +10,8 @@ test -n "$ENV_SHELL_RC" || export ENV_SHELL_RC="$HOME/.bashrc"
 me="env/$ENV_DIST_NAME"
 echo ''
 echo === Setup $me ===
+
+lixreq lib/common
 
 if testcmd dnf; then
 	dnf up --refresh -y

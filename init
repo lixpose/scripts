@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 # Usage: \. /dev/stdin << EOF
-# $(wget -qO- https://raw.githubusercontent.com/lixpose/scripts/master/init)
+# $(wget -qO- https://lix.me.uk)
 # EOF
 
 set +e
@@ -30,11 +30,10 @@ lixreq() {
 	if [ -z "$LIX_SETUP_LOCAL_PATH" ]; then
 		wexec "$LIX_SETUP_BASE_URL/$path" "$@"
 	else
-		"$LIX_SETUP_LOCAL_PATH/$PATH" "$@"
+		"$LIX_SETUP_LOCAL_PATH/$path" "$@"
 	fi
 }
 
-lixreq lib/common
 
 set -e
 

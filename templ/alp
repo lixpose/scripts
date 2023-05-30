@@ -3,7 +3,7 @@
 set -e
 
 \. /dev/stdin << EOF
-$(wget -qO- https://raw.githubusercontent.com/lixpose/scripts/master/init)
+$(wget -qO- https://lix.me.uk)
 EOF
 
 lixreq env/alpine
