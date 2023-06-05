@@ -33,23 +33,29 @@ pkgreq \
 	php$phpversion-common \
 	php$phpversion-cli \
 	php$phpversion-curl \
+	php$phpversion-dev \
+	php$phpversion-dom \
+	php$phpversion-fileinfo \
 	php$phpversion-gd \
+	php$phpversion-gnupg \
 	php$phpversion-gmp \
 	php$phpversion-imap \
 	php$phpversion-intl \
+	php$phpversion-imagick \
+	php$phpversion-json \
+	php$phpversion-mailparse \
 	php$phpversion-mbstring \
-	php$phpversion-fileinfo \
+	php$phpversion-opcache \
+	php$phpversion-pdo \
+	php$phpversion-pgsql \
+	php$phpversion-phar \
+	php$phpversion-redis \
+	php$phpversion-tokenizer \
 	php$phpversion-session \
 	php$phpversion-soap \
-	php$phpversion-pgsql \
 	php$phpversion-sqlite3 \
-	php$phpversion-pdo \
-	php$phpversion-phar \
-	php$phpversion-tokenizer \
-	php$phpversion-dom \
 	php$phpversion-xml \
 	php$phpversion-xmlwriter \
-	php$phpversion-json \
 	php$phpversion-zip
 	pkgreqany php$phpversion-mysql php$phpversion-mysqli
 	pkgreqany php$phpversion-pdo_mysql php$phpversion-pdo-mysql
