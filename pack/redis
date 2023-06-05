@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 # Usage: lixreq redis
 
-set +e
+set -e
 
 me="pack/redis"
 echo ''
@@ -10,5 +10,5 @@ echo === Setup $me ===
 pkgreq redis
 svcrun redis
 
-set -e
+set +e
 

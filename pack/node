@@ -1,7 +1,8 @@
 #!/usr/bin/env sh
 # Usage: lixreq node <majorversion: {N}>
 # EnvVars: $NODE_DOWNLOAD_URL_TARGZ, $NODE_DOWNLOAD_URL_TARGZ_SHA256
-set +e
+
+set -e
 
 me="pack/node"
 echo ''
@@ -76,5 +77,5 @@ if ! testcmd pm2; then
 	npm i pm2 -g
 fi
 
-set -e
+set +e
 

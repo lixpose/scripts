@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 # Usage: lixreq lemp <phpversion: {N.N}>
 
-set +e
+set -e
 
 me="pack/composer"
 echo ''
@@ -27,5 +27,5 @@ if ! testcmd composer; then
 	rm $tmp
 fi
 
-set -e
+set +e
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 # Usage: lixreq rust
 
-set +e
+set -e
 
 me="pack/rust"
 echo ''
@@ -12,5 +12,5 @@ if ! testcmd rustc; then
 	\. $HOME/.cargo/env
 fi
 
-set -e
+set +e
 

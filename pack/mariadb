@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 # Usage: lixreq mariadb
 
-set +e
+set -e
 
 me="pack/mariadb"
 echo ''
@@ -14,5 +14,5 @@ if ! testcmd mysql; then
 	svcrun mariadb || true
 fi
 
-set -e
+set +e
 

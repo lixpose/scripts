@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 # Usage: lixreq ssh
 
-set +e
+set -e
 
 me="pack/openssh"
 echo ''
@@ -10,5 +10,5 @@ echo === Setup $me ===
 pkgreq openssh
 svcreq sshd
 
-set -e
+set +e
 

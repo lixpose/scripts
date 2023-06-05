@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 # Usage: lixreq vim
 
-set +e
+set -e
 
 me="pack/vim"
 echo ''
@@ -14,5 +14,5 @@ if ! testcmd vim; then
 	echo set relativenumber >> $HOME/.vimrc
 fi
 
-set -e
+set +e
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 # Usage: lixreq nginx <logrotate: {N}?> <anon: 'N'|'y'?>
 
-set +e
+set -e
 
 me="pack/nginx"
 echo ''
@@ -27,4 +27,6 @@ if ! testcmd nginx; then
 	fi
 	svcrun nginx
 fi
+
+set +e
 

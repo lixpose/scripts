@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 # Usage: lixreq mbx <branch: [ master | dev ]?>
 
-set +e
+set -e
 
 me="pack/mbx"
 echo ''
@@ -26,5 +26,5 @@ if [ -z "$MBX_VERSION" ]; then
 	fi
 fi
 
-set -e
+set +e
 

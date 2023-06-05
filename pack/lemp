@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 # Usage: lixreq lemp <phpversion: {N.N}> <logrotate: {N}?> <anon: 'N'|'y'?>
 
-set +e
+set -e
 
 me="pack/lemp"
 echo ''
@@ -19,5 +19,5 @@ pkgreq php$phpversion-fpm
 svcrunany php$phpversion-fpm php-fpm$phpversion
 svcrun nginx
 
-set -e
+set +e
 

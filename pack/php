@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 # Usage: lixreq php <phpversion: {N.N}>
 
-set +e
+set -e
 
 me="pack/php"
 echo ''
@@ -56,5 +56,5 @@ pkgreq \
 	pkgreqany php$phpversion-pdo_pgsql php$phpversion-pdo-pgsql
 	pkgreqany php$phpversion-pdo_sqlite php$phpversion-pdo-sqlite
 
-	set -e
+	set +e
 

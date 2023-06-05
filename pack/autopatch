@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 # Usage: lixreq autopatch <crontime: "5 4 * * *"?>
 
-set +e
+set -e
 
 me="pack/autopatch"
 echo ''
@@ -19,5 +19,5 @@ if [ "$ENV_DIST_NAME" == "alpine" ]; then
 # 	# TODO: Auto security patches for RedHat systems
 fi
 
-set -e
+set +e
 

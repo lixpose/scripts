@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 # Usage: lixreq python3
 
-set +e
+set -e
 
 me="pack/python3"
 echo ''
@@ -10,5 +10,5 @@ echo === Setup $me ===
 pkgreq python3
 pkgreqany python3-pip py3-pip
 
-set -e
+set +e
 
