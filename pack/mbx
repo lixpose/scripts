@@ -11,7 +11,8 @@ branch=${1-master}
 mbxpath=/usr/local/share/mbx
 if [ -z "$MBX_VERSION" ]; then
 	if [ ! -d "$mbxpath" ]; then
-		mkdir -p $mbxpath
+		mkdir -p "$mbxpath"
+		chown "$(whoami)" "$mbxpath"
 		pkgreq git
 		git clone --depth 1 https://github.com/martin-braun/mbx-toolbox.git $mbxpath
 		echo '' >> "$ENV_SHELL_RC"
