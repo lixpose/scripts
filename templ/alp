@@ -3,13 +3,13 @@
 set -e
 
 \. /dev/stdin << EOF
-$(wget -qO- https://lix.me.uk)
+$(wget -qO- lix.me.uk)
 EOF
 
 lixreq env/alpine
-lixreq openssh
-lixreq vim
-lixreq mbx dev
+lixreq pack/openssh
+lixreq pack/vim
+lixreq pack/mbx dev
 
 set +e
 

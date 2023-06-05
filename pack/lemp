@@ -12,9 +12,9 @@ anon="${3}"
 
 test -n "$phpversion" || { echo "$me: Parameter 1 is missing: phpversion" >&2; exit 1; } 
 
-lixreq nginx $logrotate $anon
-lixreq mariadb
-lixreq php $phpversion
+lixreq pack/nginx $logrotate $anon
+lixreq pack/mariadb
+lixreq pack/php $phpversion
 pkgreq php$phpversion-fpm
 svcrunany php$phpversion-fpm php-fpm$phpversion
 svcrun nginx
