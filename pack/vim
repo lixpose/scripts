@@ -11,7 +11,7 @@ if ! testcmd vim; then
 	pkgreq vim
 fi
 
-if [ -f "$HOME/.vimrc" ]; then
+if [ ! -f "$HOME/.vimrc" ]; then
 	echo set clipboard^=unnamed,unnamedplus > $HOME/.vimrc
 	echo set number >> $HOME/.vimrc
 	echo set relativenumber >> $HOME/.vimrc
