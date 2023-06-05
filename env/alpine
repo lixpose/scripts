@@ -13,8 +13,6 @@ echo ''
 echo === Setup $me ===
 branch="$1"
 
-lixreq lib/common
-
 if [ -n "$branch" ]; then
 	sed -i "s,/alpine/.*/,/alpine/$branch/,g" /etc/apk/repositories
 fi

@@ -34,6 +34,7 @@ lixreq() {
 	fi
 }
 
+lixreq lib/common
 
 set -e
 

@@ -11,8 +11,6 @@ me="env/$ENV_DIST_NAME"
 echo ''
 echo === Setup $me ===
 
-lixreq lib/common
-
 if testcmd dnf; then
 	dnf up --refresh -y
 	dnf autoremove -y
