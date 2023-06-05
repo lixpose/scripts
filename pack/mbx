@@ -8,8 +8,8 @@ echo ''
 echo === Setup $me ===
 branch=${1-master}
 
-if [ -z "$MBX_VERSION" ]; then
-	mbxpath=/usr/local/share/mbx
+mbxpath=/usr/local/share/mbx
+if [ -z "$MBX_VERSION" && ! -d "$mbxpath" ]; then
 	mkdir -p $mbxpath
 	pkgreq git
 	git clone --depth 1 https://github.com/martin-braun/mbx-toolbox.git $mbxpath
