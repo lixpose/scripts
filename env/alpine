@@ -16,7 +16,7 @@ branch="$1"
 lixreq lib/common
 
 if [ -n "$branch" ]; then
-	sed -i "s#alpinelinux\\.org/alpine/.\*/#alpinelinux.org/alpine/$branch/#g" /etc/apk/repositories
+	sed -i "s,/alpine/.*/,/alpine/$branch/,g" /etc/apk/repositories
 fi
 
 echo '' > /etc/motd
