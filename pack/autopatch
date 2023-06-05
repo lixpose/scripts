@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# Usage: lixreq autopatch <crontime: "5 4 * * *"?>
+# Usage: lixreq pack/autopatch <crontime: "5 4 * * *"?>
 
 set -e
 

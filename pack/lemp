@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# Usage: lixreq lemp <phpversion: {N.N}> <logrotate: {N}?> <anon: 'N'|'y'?>
+# Usage: lixreq pack/lemp <phpversion: {N.N}> <logrotate: {N}?> <anon: 'N'|'y'?>
 
 set -e
 

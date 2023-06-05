@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# Usage: lixreq node <majorversion: {N}>
+# Usage: lixreq pack/node <majorversion: {N}>
 # EnvVars: $NODE_DOWNLOAD_URL_TARGZ, $NODE_DOWNLOAD_URL_TARGZ_SHA256
 
 set -e

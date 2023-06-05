@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# Usage: lixreq mbx <branch: [ master | dev ]?>
+# Usage: lixreq pack/mbx <branch: [ master | dev ]?>
 
 set -e
 

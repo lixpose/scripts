@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# Usage: lixreq ssh
+# Usage: lixreq pack/ssh
 
 set -e
 

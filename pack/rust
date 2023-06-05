@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# Usage: lixreq rust
+# Usage: lixreq pack/rust
 
 set -e
 

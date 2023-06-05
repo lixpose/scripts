@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# Usage: lixreq nginx <logrotate: {N}?> <anon: 'N'|'y'?>
+# Usage: lixreq pack/nginx <logrotate: {N}?> <anon: 'N'|'y'?>
 
 set -e
 

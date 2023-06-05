@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# Usage: lixreq php <phpversion: {N.N}>
+# Usage: lixreq pack/php <phpversion: {N.N}>
 
 set -e
 
