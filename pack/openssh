@@ -7,7 +7,7 @@ me="pack/openssh"
 echo ''
 echo === Setup $me ===
 
-pkgreq openssh
+pkgreqany openssh openssh-server
 svcreq sshd
 
 set +e
