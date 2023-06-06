@@ -9,7 +9,7 @@ echo === Setup $me ===
 
 if ! testcmd rustc; then
 	wexec "https://sh.rustup.rs"
-	\. $HOME/.cargo/env
+	\. $USER_HOME/.cargo/env
 fi
 
 set +e

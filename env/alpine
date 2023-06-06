@@ -6,7 +6,7 @@ set +e
 
 export ENV_DIST_NAME="alpine"
 export ENV_DIST_CODE="alp"
-test -n "$ENV_SHELL_RC" || export ENV_SHELL_RC="$HOME/.profile"
+test -n "$ENV_SHELL_RC" || export ENV_SHELL_RC="$USER_HOME/.profile"
 
 me="env/$ENV_DIST_NAME"
 echo ''

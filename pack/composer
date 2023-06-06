@@ -23,7 +23,7 @@ if ! testcmd composer; then
 	fi
 	chmod +x $tmp
 	php $tmp
-	mv -f $HOME/composer.phar /usr/local/bin/composer
+	mv -f $USER_HOME/composer.phar /usr/local/bin/composer
 	rm $tmp
 fi
 

@@ -5,7 +5,7 @@ set +e
 
 export ENV_DIST_NAME="debian"
 export ENV_DIST_CODE="deb"
-test -n "$ENV_SHELL_RC" || export ENV_SHELL_RC="$HOME/.bashrc"
+test -n "$ENV_SHELL_RC" || export ENV_SHELL_RC="$USER_HOME/.bashrc"
 
 me="env/$ENV_DIST_NAME"
 echo ''

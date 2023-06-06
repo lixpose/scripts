@@ -34,7 +34,7 @@ EOF
 			echo '' >> "$ENV_SHELL_RC"
 			curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
 			sed -i "/\bThis loads nvm\b/d" "$ENV_SHELL_RC"
-			if [ ! "$ENV_SHELL_RC" = "$HOME/.bashrc" ]; then
+			if [ ! "$ENV_SHELL_RC" = "$USER_HOME/.bashrc" ]; then
 				cat - >> "$ENV_SHELL_RC" << EOF
 export NVM_DIR="\$([ -z "\${XDG_CONFIG_HOME-}" ] && printf %s "\${HOME}/.nvm" || printf %s "\${XDG_CONFIG_HOME}/nvm")"
 EOF
