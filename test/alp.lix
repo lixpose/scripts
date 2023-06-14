@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# Usage: \. /dev/stdin <<< "$(wget -qO- https://raw.githubusercontent.com/lixpose/scripts/master/test/debian-full)"
+# Usage: apk add ssl_client && \. /dev/stdin <<< "$(wget -qO- https://raw.githubusercontent.com/lixpose/scripts/master/test/alp.lix)"
 
 LIX_TEST_BRANCH="${LIX_TEST_BRANCH:-master}"
 

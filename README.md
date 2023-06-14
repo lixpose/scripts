@@ -42,6 +42,8 @@ if [ $hatch_php ]; then
 fi
 ```
 
+> Note: If you are on Alpine, please `apk add ssl_client`, first.
+
 ## KVM
 
 Although lixpose was designed for Linux Containers in mind, it is compatible with KVMs as well. There are some KVM scripts in the `pack/kvm` sub-directory.
