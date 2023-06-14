@@ -13,6 +13,7 @@ if ! testcmd nginx; then
 	pkgreq nginx
 	rm /etc/nginx/sites-enabled/default || true
 	rm -r /var/www/html || true
+	rm -r /var/www/localhost || true
 	case "$anon" in
 		[yY][eE][sS]|[yY])
 			# anonymize IPs in access.log:
