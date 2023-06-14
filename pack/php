@@ -37,7 +37,6 @@ pkgreq \
 	php$phpversion-dom \
 	php$phpversion-fileinfo \
 	php$phpversion-gd \
-	php$phpversion-gnupg \
 	php$phpversion-gmp \
 	php$phpversion-imap \
 	php$phpversion-intl \
@@ -61,6 +60,7 @@ pkgreq \
 	pkgreqany php$phpversion-pdo_mysql php$phpversion-pdo-mysql
 	pkgreqany php$phpversion-pdo_pgsql php$phpversion-pdo-pgsql
 	pkgreqany php$phpversion-pdo_sqlite php$phpversion-pdo-sqlite
+	pkgreq php$phpversion-gnupg || true
 
 	set +e
 
