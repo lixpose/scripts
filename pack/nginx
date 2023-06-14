@@ -11,7 +11,7 @@ anon="${2}"
 
 if ! testcmd nginx; then
 	pkgreq nginx
-	rm /etc/nginx/sites-enabled/default
+	rm /etc/nginx/sites-enabled/default || true
 	rm -r /var/www/html
 	case "$anon" in
 		[yY][eE][sS]|[yY])
