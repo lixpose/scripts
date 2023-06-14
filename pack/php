@@ -16,6 +16,7 @@ if [ "$ENV_DIST_NAME" = "alpine" ]; then
 	phpversion="$(echo $phpversion | sed 's/\.//g')"
 	if ! testcmd php; then
 		pkgreq php$phpversion
+		echo '' >> "$ENV_SHELL_RC"
 		echo '# php' >> "$ENV_SHELL_RC"
 		echo "alias php=php$phpversion" >> "$ENV_SHELL_RC"
 		sourcerc
