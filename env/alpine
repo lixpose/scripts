@@ -11,7 +11,7 @@ test -n "$ENV_SHELL_RC" || export ENV_SHELL_RC="$USER_HOME/.profile"
 me="env/$ENV_DIST_NAME"
 echo ''
 echo === Setup $me ===
-branch="$1"
+branch="$3"
 
 if [ -n "$branch" ]; then
 	sed -i "s,/alpine/.*/,/alpine/$branch/,g" /etc/apk/repositories
