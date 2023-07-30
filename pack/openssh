@@ -11,4 +11,3 @@ pkgreqany openssh openssh-server
 svcreq sshd
 
 set +e
-

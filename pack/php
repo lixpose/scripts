@@ -51,7 +51,6 @@ pkgreq \
 	php$phpversion-phar \
 	php$phpversion-redis \
 	php$phpversion-tokenizer \
-	php$phpversion-session \
 	php$phpversion-soap \
 	php$phpversion-sqlite3 \
 	php$phpversion-xml \
@@ -61,7 +60,7 @@ pkgreq \
 	pkgreqany php$phpversion-pdo_mysql php$phpversion-pdo-mysql
 	pkgreqany php$phpversion-pdo_pgsql php$phpversion-pdo-pgsql
 	pkgreqany php$phpversion-pdo_sqlite php$phpversion-pdo-sqlite
+	pkgreq php$phpversion-session || true
 	pkgreq php$phpversion-gnupg || true
 
 	set +e
-
