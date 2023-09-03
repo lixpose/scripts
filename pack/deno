@@ -8,8 +8,8 @@ echo ''
 echo === Setup $me ===
 
 if ! testcmd deno; then
-    pkgreg curl
-    curl -fsSL https://deno.land/x/install/install.sh | sh
+	pkgreq curl
+	curl -fsSL https://deno.land/x/install/install.sh | sh
 fi
 
 set +e
