@@ -10,6 +10,10 @@ echo === Setup $me ===
 if ! testcmd deno; then
 	pkgreq curl unzip
 	curl -fsSL https://deno.land/x/install/install.sh | sh
+	echo '' >> "$ENV_SHELL_RC"
+	echo '# deno' >> "$ENV_SHELL_RC"
+	echo 'export PATH=$PATH:/$HOME/.deno/bin' >> "$ENV_SHELL_RC"
+	sourcerc
 fi
 
 set +e
