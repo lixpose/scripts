@@ -8,7 +8,7 @@ echo ''
 echo === Setup $me ===
 crontime=${1-"5 4 * * *"}
 
-if [ "$ENV_DIST_NAME" == "alpine" ]; then
+if [ "$ENV_DIST_NAME" = "alpine" ]; then
 	# pkgreq apk-autoupdate # not stable yet
 	sed -i '/#LIXPOSE:autopatch/d' /etc/crontabs/$USER
 	echo "$crontime apk update > \$HOME/autopatch.log 2>&1 && apk upgrade >> \$HOME/autopatch.log 2>&1 && reboot #LIXPOSE:autopatch" >> /etc/crontabs/$USER
