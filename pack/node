@@ -78,4 +78,3 @@ if ! testcmd pm2; then
 fi
 
 set +e
-

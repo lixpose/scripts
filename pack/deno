@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+# Usage: lixreq pack/deno
+
+set -e
+
+me="pack/deno"
+echo ''
+echo === Setup $me ===
+
+if ! testcmd deno; then
+    pkgreg curl
+    curl -fsSL https://deno.land/x/install/install.sh | sh
+fi
+
+set +e
