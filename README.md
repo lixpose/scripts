@@ -12,7 +12,7 @@ The helper functions are designed to be re-run without issue, i.e. packages will
 
 ## How-To
 
-```
+```sh
 # initialize lixpose:
 \. /dev/stdin << EOF
 	$(wget -qO- lix.me.uk)
@@ -45,11 +45,10 @@ fi
 
 > Note: If you are on Alpine, please `apk add ssl_client`, first.
 
-## KVM
+<!--## KVM
 
 Although lixpose was designed for Linux Containers in mind, it is compatible with KVMs as well. There are some KVM scripts in the `pack/kvm` sub-directory.
 
 ## WL
 
-For workstations there is a `pack/wl` directory that offers scripts to setup wayland compositors and compatible GUI software. If there are no options, the directory also features X software that is compatible with `xwayland` in the `pack/wl/x` sub directory.
-
+For workstations there is a `pack/wl` directory that offers scripts to setup wayland compositors and compatible GUI software. If there are no options, the directory also features X software that is compatible with `xwayland` in the `pack/wl/x` sub directory.-->

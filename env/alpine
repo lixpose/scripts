@@ -10,7 +10,7 @@ test -n "$ENV_SHELL_RC" || export ENV_SHELL_RC="$USER_HOME/.profile"
 
 me="env/$ENV_DIST_NAME"
 echo ''
-echo === Setup $me ===
+echo "=== Setup $me ==="
 branch="$3"
 
 if [ -n "$branch" ]; then
@@ -33,4 +33,3 @@ fi
 sourcerc # sourcing right after env setup will prevent unintended re-installs
 
 set -e
-

@@ -9,7 +9,7 @@ test -n "$ENV_SHELL_RC" || export ENV_SHELL_RC="$USER_HOME/.bashrc"
 
 me="env/$ENV_DIST_NAME"
 echo ''
-echo === Setup $me ===
+echo "=== Setup $me ==="
 
 if testcmd dnf; then
 	dnf up --refresh -y
@@ -19,10 +19,9 @@ elif testcmd yum; then
 	yum upgrade -y
 else
 	echo No package manager found. >&2
-	return 1001
+	return 1
 fi
 
 sourcerc # sourcing right after env setup will prevent unintended re-installs
 
 set -e
-

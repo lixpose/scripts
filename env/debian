@@ -9,7 +9,7 @@ test -n "$ENV_SHELL_RC" || export ENV_SHELL_RC="$USER_HOME/.bashrc"
 
 me="env/$ENV_DIST_NAME"
 echo ''
-echo === Setup $me ===
+echo "=== Setup $me ==="
 
 #dpkg-reconfigure locales
 apt-get update && apt-get full-upgrade -y
@@ -18,4 +18,3 @@ apt-get autoremove -y
 sourcerc # sourcing right after env setup will prevent unintended re-installs
 
 set -e
-
