@@ -28,7 +28,8 @@ testcmd php || hatch_php=1
 pkgreq software-properties-common gnupg redis-server imagemagick
 
 # ensure some package-kits are installed and configured:
-lixreq pack/lemp 8.4 # nginx, mariaDB, php8.4
+phpversion="8.4"
+lixreq pack/lemp $phpversion # nginx, mariaDB, php8.4
 lixreq pack/node 18
 lixreq pack/python3
 

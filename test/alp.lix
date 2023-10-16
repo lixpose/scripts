@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 # Usage: apk add ssl_client && \. /dev/stdin <<< "$(wget -qO- https://raw.githubusercontent.com/lixpose/scripts/master/test/alp.lix)"
+# shellcheck disable=SC1091
 
 LIX_TEST_BRANCH="${LIX_TEST_BRANCH:-master}"
 
@@ -7,7 +8,7 @@ set -e
 set -x
 
 \. /dev/stdin << EOF
-$(wget -qO- https://raw.githubusercontent.com/lixpose/scripts/$LIX_TEST_BRANCH/init)
+$(wget -qO- "https://raw.githubusercontent.com/lixpose/scripts/$LIX_TEST_BRANCH/init")
 EOF
 
 lixreq env/alpine

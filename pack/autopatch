@@ -5,13 +5,13 @@ set -e
 
 me="pack/autopatch"
 echo ''
-echo === Setup $me ===
+echo "=== Setup $me ==="
 crontime=${1-"5 4 * * *"}
 
 if [ "$ENV_DIST_NAME" = "alpine" ]; then
 	# pkgreq apk-autoupdate # not stable yet
-	sed -i '/#LIXPOSE:autopatch/d' /etc/crontabs/$USER
-	echo "$crontime apk update > \$HOME/autopatch.log 2>&1 && apk upgrade >> \$HOME/autopatch.log 2>&1 && reboot #LIXPOSE:autopatch" >> /etc/crontabs/$USER
+	sed -i '/#LIXPOSE:autopatch/d' "/etc/crontabs/$USER"
+	echo "$crontime apk update > /var/log/autopatch.log 2>&1 && apk upgrade >> /var/log/autopatch.log 2>&1 && reboot #LIXPOSE:autopatch" >> "/etc/crontabs/$USER"
 	echo Autopatcher installed, please reboot to apply changes.
 # elif [ "$ENV_DIST_NAME" == "debian" ]; then
 # 	# TODO: Unattended-Upgrades for Debian systems

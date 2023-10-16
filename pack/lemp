@@ -5,18 +5,18 @@ set -e
 
 me="pack/lemp"
 echo ''
-echo === Setup $me ===
+echo "=== Setup $me ==="
 phpversion="$1"
 logrotate="${2-0}"
 anon="${3}"
 
 test -n "$phpversion" || { echo "$me: Parameter 1 is missing: phpversion" >&2; exit 1; } 
 
-lixreq pack/nginx $logrotate $anon
+lixreq pack/nginx "$logrotate" "$anon"
 lixreq pack/mariadb
-lixreq pack/php $phpversion
-pkgreq php$phpversion-fpm
-svcrunany php$phpversion-fpm php-fpm$phpversion
+lixreq pack/php "$phpversion"
+pkgreq "php$phpversion-fpm"
+svcrunany "php$phpversion-fpm" "php-fpm$phpversion"
 svcrun nginx
 
 set +e

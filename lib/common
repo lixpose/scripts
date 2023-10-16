@@ -1,10 +1,12 @@
 #!/usr/bin/env sh
+# shellcheck disable=SC1090,SC2086
 
 # Skip when already sourced:
 test ! $LXC_COMPOSE_LIBLOAD_COMMON || return
 export LXC_COMPOSE_LIBLOAD_COMMON=1
 
-export USER_HOME=$(getent passwd ${SUDO_USER:-$USER} | cut -d: -f6)
+USER_HOME="$(getent passwd ${SUDO_USER:-$USER} | cut -d: -f6)"
+export USER_HOME
 
 ###
 # Test if a command can be executed.
@@ -39,7 +41,7 @@ sourcerc() {
 #   Installer log or function error, otherwise nothing.
 # Returns:
 #   0, if packages were found or were installed successfully, otherwise the last error of the package manager. 
-#   Returns 1001, if the existence of the package could not be verified or no matching package manager was found to install a package.
+#   Returns 251, if the existence of the package could not be verified or no matching package manager was found to install a package.
 ###
 pkgreq() {
 	if testcmd apk; then
@@ -56,7 +58,7 @@ pkgreq() {
 					apt-get install $pkg -y || return
 				else
 					echo "Unable to ensure $pkg, because no package manager to install the package was found."
-					return 1001
+					return 251
 				fi
 				inst=1
 			fi
@@ -70,7 +72,7 @@ pkgreq() {
 					yum install $pkg -y || return
 				else
 					echo "Unable to ensure $pkg, because no package manager to install the package was found."
-					return 1001
+					return 251
 				fi
 				inst=1
 			fi
@@ -83,8 +85,8 @@ pkgreq() {
 			fi
 		done
 	else
-		echo "Unable to require $@, because no package detection was found." >&2
-		return 1001
+		echo "Unable to require $*, because no package detection was found." >&2
+		return 251
 	fi
 	test ! $inst && return 0
 	sourcerc
@@ -106,7 +108,7 @@ pkgreqany() {
 	for pkg in "$@"; do
 		pkgreq "$pkg" 2> /dev/null && return
 	done
-	echo "Unable to install one of $@." >&2 && return 1
+	echo "Unable to install one of $*." >&2 && return 1
 }
 
 ###
@@ -144,7 +146,7 @@ svcreqany() {
 	for svc in "$@"; do
 		svcreq "$svc" 2> /dev/null && return
 	done
-	echo "Unable to enable/start one of $@." >&2 && return 1
+	echo "Unable to enable/start one of $*." >&2 && return 1
 }
 
 ###
@@ -182,6 +184,6 @@ svcrunany() {
 	for svc in "$@"; do
 		svcrun "$svc" 2> /dev/null && return
 	done
-	echo "Unable to enable/start one of $@." >&2 && return 1
+	echo "Unable to enable/start one of $*." >&2 && return 1
 }
 

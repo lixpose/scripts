@@ -5,7 +5,7 @@ set -e
 
 me="pack/composer"
 echo ''
-echo === Setup $me ===
+echo "=== Setup $me ==="
 
 if ! testcmd composer; then
 	if ! testcmd php; then
@@ -18,13 +18,13 @@ if ! testcmd composer; then
 	actual_checksum="$(php -r "echo hash_file('sha384', '$tmp');")"
 	if [ "$expected_checksum" != "$actual_checksum" ]; then
 		>&2 echo 'ERROR: Invalid installer checksum'
-		rm $tmp
+		rm "$tmp"
 		exit 1
 	fi
-	chmod +x $tmp
-	php $tmp
-	mv -f $USER_HOME/composer.phar /usr/local/bin/composer
-	rm $tmp
+	chmod +x "$tmp"
+	php "$tmp"
+	mv -f "$USER_HOME/composer.phar" /usr/local/bin/composer
+	rm "$tmp"
 fi
 
 set +e

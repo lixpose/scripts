@@ -5,7 +5,7 @@ set -e
 
 me="pack/mariadb"
 echo ''
-echo === Setup $me ===
+echo "=== Setup $me ==="
 
 if ! testcmd mysql; then
 	pkgreqany mariadb mariadb-server

@@ -6,7 +6,7 @@ set -e
 
 me="pack/node"
 echo ''
-echo === Setup $me ===
+echo "=== Setup $me ==="
 majorversion="${1-lts}"
 
 test -n "$majorversion" || { echo "$me: Parameter 1 is missing: majorversion" >&2; exit 1; } 
@@ -15,17 +15,16 @@ if ! testcmd node; then
 	if [ -n "$NODE_DOWNLOAD_URL_TARGZ" ]; then
 		pkgreq wget
 		# TODO: Download custom node version, install and verify it
-	fi
 	elif [ "$ENV_DIST_NAME" = "alpine" ]; then
 		# Alpine will not support node binaries supplied by nvm, so falling back to apk
 		if [ "$majorversion" = "lts" ]; then
 			pkgreq nodejs npm
 		else
 			pkgreq nodejs~=$majorversion
-			read npmv << EOF
+			read -r npmv << EOF
 $(node -e "fetch('https://nodejs.org/dist/index.json').then(r=>r.json()).then(e=>console.info(e.filter(a=>a.version=='$(node -v)')[0].npm))"))
 EOF
-			pkgreq npm~=$npmv
+			pkgreq npm~="$npmv"
 		fi
 		npm i npx pm2 -g
 	else
@@ -68,8 +67,8 @@ EOF
 			nvm install --lts
 			nvm alias default 'lts/*'
 		else
-			nvm install $majorversion
-			nvm alias default $majorversion
+			nvm install "$majorversion"
+			nvm alias default "$majorversion"
 		fi
 	fi
 fi

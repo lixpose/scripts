@@ -1,9 +1,10 @@
 #!/usr/bin/env sh
+# shellcheck disable SC1091
 
 set -e
 
-\. /dev/stdin << EOF
-$(wget -qO- lix.me.uk)
+. /dev/stdin << EOF
+	$(wget -qO- lix.me.uk)
 EOF
 
 lixreq env/debian
@@ -11,4 +12,3 @@ lixreq pack/vim
 lixreq pack/mbx dev
 
 set +e
-

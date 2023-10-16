@@ -1,11 +1,12 @@
 #!/usr/bin/env sh
 # Usage: lixreq pack/mbx <branch: [ master | dev ]?>
+# shellcheck disable SC2016
 
 set -e
 
 me="pack/mbx"
 echo ''
-echo === Setup $me ===
+echo "=== Setup $me ==="
 branch=${1-master}
 
 mbxpath=/usr/local/share/mbx
@@ -16,11 +17,13 @@ if [ -z "$MBX_VERSION" ]; then
 		pkgreq git
 		git clone --depth 1 https://github.com/martin-braun/mbx-toolbox.git $mbxpath
 		echo Updating and reloading $ENV_SHELL_RC ...
-		echo '' >> "$ENV_SHELL_RC"
-		echo '# mbx' >> "$ENV_SHELL_RC"
-		echo 'export MBX_PATH="'"$mbxpath"'"' >> "$ENV_SHELL_RC"
-		echo 'export PATH=$PATH:/$MBX_PATH/bin/'"$ENV_DIST_CODE"':$MBX_PATH/bin' >> "$ENV_SHELL_RC"
-		echo 'test -f "$MBX_PATH/lib/init.sh" && \. "$MBX_PATH/lib/init.sh"' >> "$ENV_SHELL_RC"
+		{
+			echo ''
+			echo '# mbx'
+			echo 'export MBX_PATH="'"$mbxpath"'"'
+			echo 'export PATH=$PATH:/$MBX_PATH/bin/'"$ENV_DIST_CODE"':$MBX_PATH/bin'
+			echo 'test -f "$MBX_PATH/lib/init.sh" && \. "$MBX_PATH/lib/init.sh"'
+		} >> "$ENV_SHELL_RC"
 		sourcerc
 		if [ "$branch" = "dev" ]; then
 			git -C "$mbxpath" config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"

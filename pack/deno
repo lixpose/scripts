@@ -1,18 +1,21 @@
 #!/usr/bin/env sh
 # Usage: lixreq pack/deno
+# shellcheck disable SC2016
 
 set -e
 
 me="pack/deno"
 echo ''
-echo === Setup $me ===
+echo "=== Setup $me ==="
 
 if ! testcmd deno; then
 	pkgreq curl unzip
 	curl -fsSL https://deno.land/x/install/install.sh | sh
-	echo '' >> "$ENV_SHELL_RC"
-	echo '# deno' >> "$ENV_SHELL_RC"
-	echo 'export PATH=$PATH:/$HOME/.deno/bin' >> "$ENV_SHELL_RC"
+	{
+		echo ''
+		echo '# deno';
+		echo 'export PATH=$PATH:/$HOME/.deno/bin'
+	} >> "$ENV_SHELL_RC"
 	sourcerc
 fi
 

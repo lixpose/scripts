@@ -1,11 +1,12 @@
 #!/usr/bin/env sh
 # Usage: lixreq pack/nginx <logrotate: {N}?> <anon: 'N'|'y'?>
+# shellcheck disable SC2016
 
 set -e
 
 me="pack/nginx"
 echo ''
-echo === Setup $me ===
+echo "=== Setup $me ==="
 logrotate="${1-0}"
 anon="${2}"
 

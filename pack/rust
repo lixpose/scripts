@@ -1,15 +1,16 @@
 #!/usr/bin/env sh
 # Usage: lixreq pack/rust
+# shellcheck disable=SC1091
 
 set -e
 
 me="pack/rust"
 echo ''
-echo === Setup $me ===
+echo "=== Setup $me ==="
 
 if ! testcmd rustc; then
 	wexec "https://sh.rustup.rs"
-	\. $USER_HOME/.cargo/env
+	\. "$USER_HOME/.cargo/env"
 fi
 
 set +e

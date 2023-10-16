@@ -5,7 +5,7 @@ set +e
 
 me="wl/init"
 echo ''
-echo === Setup $me ===
+echo "=== Setup $me ==="
 
 set -e
 

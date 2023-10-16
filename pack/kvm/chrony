@@ -5,7 +5,7 @@ set +e
 
 me="pack/kvm/chrony"
 echo ''
-echo === Setup $me ===
+echo "=== Setup $me ==="
 
 pkgreq chrony
 svcreq chronyd

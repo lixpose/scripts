@@ -1,9 +1,11 @@
 #!/usr/bin/env sh
+# shellcheck disable SC1091
 
 set -e
 
-\. /dev/stdin << EOF
-$(wget -qO- lix.me.uk)
+apk add ssl_client || true
+. /dev/stdin << EOF
+	$(wget -qO- lix.me.uk)
 EOF
 
 lixreq env/alpine

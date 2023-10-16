@@ -1,13 +1,12 @@
 #!/usr/bin/env sh
-# Usage: lixreq template/sample
+# Usage: lixreq pack/hello
 
 set +e
 
-me="template/package"
+me="pack/hello"
 echo ''
-echo === Setup $me ===
+echo "=== Setup $me ==="
 
-# Add your setup instructions here
+pkgreq hello
 
 set -e
-

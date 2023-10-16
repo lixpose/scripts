@@ -5,16 +5,18 @@ set -e
 
 me="pack/vim"
 echo ''
-echo === Setup $me ===
+echo "=== Setup $me ==="
 
 if ! testcmd vim; then
 	pkgreq vim
 fi
 
 if [ ! -f "$USER_HOME/.vimrc" ]; then
-	echo set clipboard^=unnamed,unnamedplus > $USER_HOME/.vimrc
-	echo set number >> $USER_HOME/.vimrc
-	echo set relativenumber >> $USER_HOME/.vimrc
+	{
+		echo set clipboard^=unnamed,unnamedplus
+		echo set number
+		echo set relativenumber
+	} > "$USER_HOME/.vimrc"
 fi
 
 set +e
