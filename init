@@ -37,4 +37,3 @@ lixreq() {
 lixreq lib/common
 
 set -e
-

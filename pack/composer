@@ -28,4 +28,3 @@ if ! testcmd composer; then
 fi
 
 set +e
-

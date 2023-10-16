@@ -20,4 +20,3 @@ if [ "$ENV_DIST_NAME" = "alpine" ]; then
 fi
 
 set +e
-

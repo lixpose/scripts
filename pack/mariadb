@@ -15,4 +15,3 @@ if ! testcmd mysql; then
 fi
 
 set +e
-

@@ -11,4 +11,3 @@ pkgreq redis
 svcrun redis
 
 set +e
-

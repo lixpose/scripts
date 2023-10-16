@@ -11,4 +11,3 @@ pkgreq python3
 pkgreqany python3-pip py3-pip
 
 set +e
-

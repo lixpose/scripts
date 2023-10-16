@@ -20,4 +20,3 @@ if [ ! -f "$USER_HOME/.vimrc" ]; then
 fi
 
 set +e
-

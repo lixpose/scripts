@@ -14,4 +14,3 @@ if ! testcmd rustc; then
 fi
 
 set +e
-

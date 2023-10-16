@@ -14,4 +14,3 @@ lixreq pack/vim
 lixreq pack/mbx dev
 
 set +e
-

@@ -31,4 +31,3 @@ if ! testcmd nginx; then
 fi
 
 set +e
-
